@@ -1,6 +1,6 @@
 # PROJECT_STATE — Trạng thái dự án THE FALLEN
 
-> Cập nhật: 2026-11-21 — M1 Project Foundation **Partial** (Giai đoạn A từ PR #1 đã merge; ứng dụng khung, test sandbox và CI PR #2 thành công; chưa nghiệm thu iPhone thật).
+> Cập nhật: 2026-11-21 — M1 Project Foundation **Partial** (ứng dụng khung và CI PR #2 thành công; cả preview cũ 5173 và URL thử mới 5181 cùng sandbox ID đều trả 502 `SANDBOX NOT FOUND` trên iPhone theo báo cáo người dùng; chưa tải được ứng dụng để nghiệm thu WebGL 2).
 > Tài liệu này là nguồn sự thật về trạng thái dự án. Mọi trạng thái tuân thủ [README.md](README.md#quy-tắc-trạng-thái). Không đánh dấu Verified chỉ vì tài liệu hoặc workflow đã được viết.
 
 ## Tình trạng dự án
@@ -10,8 +10,9 @@
 - **Mã nguồn game:** Not Started — chưa có gameplay, nhân vật, thế giới, physics, save.
 - **Tài nguyên game:** Not Started — chưa có model, texture, animation, audio.
 - **Backend / đăng nhập:** Not Started.
-- **Kiểm thử:** Verified **cục bộ** cho typecheck, build, 4 Vitest và 5 Playwright trong Chromium mobile emulation; Verified **CI PR #2** cho các bước typecheck/build/Vitest/Playwright Chromium + WebKit ([job](https://github.com/Duy1811/THE-FALLEN/actions/runs/44884262901/job/136786012091)). **Blocked** với Safari/WebGL 2 trên iPhone 15 Pro Max thật và WebKit cục bộ. Xem [TEST_REPORT.md](TEST_REPORT.md) và [log](evidence/M1_LOCAL_VERIFICATION.md).
-- **Thiết bị kiểm thử:** iPhone 15 Pro Max là mục tiêu chính nhưng không có thiết bị thật trong sandbox. PC của người dùng chưa sẵn sàng; headless Chromium trong sandbox không thay thế kiểm thử PC thật.
+- **Kiểm thử:** Verified **cục bộ** cho typecheck, build, 4 Vitest và 5 Playwright trong Chromium mobile emulation; Verified **CI PR #2** cho các bước typecheck/build/Vitest/Playwright Chromium + WebKit ([job](https://github.com/Duy1811/THE-FALLEN/actions/runs/44884510596/job/136786761962)). **Blocked**: truy cập preview qua Internet/iPhone Safari, kiểm tra WebGL 2 trên iPhone thật và WebKit cục bộ. Safari báo 502 từ proxy trước khi ứng dụng tải, **không phải kết quả kiểm tra WebGL 2**. Xem [TEST_REPORT.md](TEST_REPORT.md).
+- **Preview Arena:** URL cũ `https://5173-iu017fy2i6p4z4obvagj1.e2b.app/` đã **không còn sử dụng được từ Safari** (báo cáo 502 `SANDBOX NOT FOUND`, `Sandbox lifecycle 7`). Vite khởi động lại ở cổng 5181 trên **cùng ID sandbox**; `https://5181-iu017fy2i6p4z4obvagj1.e2b.app/` **cũng trả 502 trên Safari theo xác nhận của người dùng**. Fetch web độc lập cũng thất bại; không có URL public hoạt động để bàn giao. Không đánh giá lỗi WebGL 2 từ kết quả 502. Xem [TEST_REPORT.md](TEST_REPORT.md).
+- **Thiết bị kiểm thử:** iPhone 15 Pro Max là mục tiêu chính nhưng không có thiết bị thật trong sandbox. Người dùng đã thử URL cũ và URL cổng mới trên Safari, đều gặp lỗi proxy 502 trước khi ứng dụng tải; **kiểm thử WebGL 2 trên iPhone vẫn Blocked**. PC của người dùng chưa sẵn sàng; headless Chromium trong sandbox không thay thế kiểm thử PC thật.
 
 ## Các quyết định đã xác nhận
 
@@ -51,7 +52,7 @@ Chi tiết và quy trình thay đổi quyết định: [DECISION_LOG.md](DECISIO
 
 ## Công việc chưa hoàn thành
 
-- Xác nhận `npm run dev`, trang chủ và **WebGL 2 trên Safari iPhone 15 Pro Max thật** — Blocked cho đến khi người dùng mở preview trên thiết bị và cung cấp bằng chứng. Kiểm thử màn hình giả lập **không** đáp ứng điều kiện này.
+- Khôi phục **preview truy cập được từ ngoài sandbox** và xác nhận nội dung thực sự là ứng dụng Vite. Sau đó mới kiểm thử trang chủ và **WebGL 2 trên Safari iPhone 15 Pro Max thật** — Blocked cho đến khi người dùng mở được ứng dụng và cung cấp bằng chứng. 502 `SANDBOX NOT FOUND` tại proxy không phải lỗi WebGL 2; kiểm thử màn hình giả lập **không** đáp ứng điều kiện này.
 - CI Vitest + Playwright Chromium/WebKit đã thành công trên [PR #2](https://github.com/Duy1811/THE-FALLEN/pull/2). PR vẫn mở; **không tự merge/tag M1** khi kiểm thử iPhone thật chưa đầy đủ.
 - Toàn bộ mã nguồn **game**, tài nguyên game, physics, backend — Not Started (đúng giới hạn M1).
 - Định nghĩa chi tiết nhân vật còn lại (ngoài Seraphine đã chốt), bản đồ khu vực, kịch bản hội thoại — Not Started (GDD mới ở mức thiết kế khung; sáu khu vực mới chốt vai trò dự kiến).
@@ -66,7 +67,7 @@ Chi tiết và quy trình thay đổi quyết định: [DECISION_LOG.md](DECISIO
 | R-04 | Chi phí hạ tầng (hosting, domain, database, storage) có thể phát sinh ở M7; dịch vụ miễn phí có giới hạn | Trung bình | Not Started — phải ghi rõ khi triển khai M7 |
 | R-05 | Ranh giới nội dung M6 cần thiết kế cẩn thận (đồng thuận, cài đặt nội dung, phân loại độ tuổi) | Trung bình | Not Started — khung đã có trong GDD, chi tiết ở M6 |
 | R-06 | WebGPU chỉ tùy chọn → không được phụ thuộc WebGPU cho tính năng bắt buộc | Thấp | Implemented — D-003; mã M1 chỉ phát hiện API, không dùng để render |
-| R-07 | Chưa kiểm thử Safari/WebGL 2 trên iPhone 15 Pro Max thật hoặc truy cập preview từ thiết bị | Cao | Blocked — cần người dùng chạy checklist trên iPhone và ghi bằng chứng |
+| R-07 | Cả preview cũ 5173 và URL thử 5181 trả 502 `SANDBOX NOT FOUND` trên Safari; chưa kiểm thử WebGL 2 trên iPhone 15 Pro Max thật | Cao | Blocked — lỗi tại proxy trước khi tải ứng dụng, không đánh giá hỗ trợ WebGL 2; cần sandbox/proxy mới từ Arena |
 | R-08 | Gói Three.js diagnostic 526 kB minified (132 kB gzip) vượt ngưỡng cảnh báo 500 kB của Vite | Trung bình | Partial — đã tách tải động khỏi UI (UI 73 kB gzip); cần tiếp tục theo dõi hiệu năng mobile M2 |
 | R-09 | Sandbox hạn chế tải WebKit từ Playwright CDN | Trung bình | Blocked cục bộ — CI GitHub Actions đã cài WebKit và chạy E2E thành công; WebKit Linux vẫn không phải iPhone Safari |
 
@@ -74,7 +75,7 @@ Chi tiết và quy trình thay đổi quyết định: [DECISION_LOG.md](DECISIO
 
 | Milestone | Nội dung | Trạng thái | Ghi chú |
 |---|---|---|---|
-| M1 | Project Foundation | Partial | App/test sandbox và CI có bằng chứng; iPhone Safari thật chưa kiểm thử |
+| M1 | Project Foundation | Partial | App/test sandbox và CI có bằng chứng; cả hai URL preview đều lỗi proxy 502, ứng dụng/WebGL 2 chưa kiểm thử được trên iPhone Safari thật |
 | M2 | Character & 3D World | Not Started | |
 | M3 | Abilities & Combat | Not Started | |
 | M4 | NPC & World Systems | Not Started | |
@@ -95,6 +96,6 @@ Chi tiết: [ROADMAP.md](ROADMAP.md). Công việc tiếp theo: [NEXT_TASK.md](N
 ## Kiểm tra đã thực hiện (M1 — 2026-11-21)
 
 - `npm ci`, `npm run typecheck`, `npm run build`, `npm run test:unit` và Playwright Chromium headless mobile: **Verified cục bộ**, log gốc ở [evidence/M1_LOCAL_VERIFICATION.md](evidence/M1_LOCAL_VERIFICATION.md).
-- Vite dev bind `0.0.0.0:5173`, request dùng Host của preview Arena trả HTTP 200; production preview cục bộ cũng trả HTTP 200 và khởi tạo WebGL 2. **Không** chứng minh URL chạy trên iPhone Safari.
+- Ở lần kiểm thử đầu, Vite dev bind `0.0.0.0:5173`, request dùng Host của preview Arena trả HTTP 200 nội bộ; production preview cục bộ cũng trả HTTP 200 và khởi tạo WebGL 2. Sau đó người dùng nhận 502 `SANDBOX NOT FOUND` trên Safari với URL cổng 5173. Ngày 2026-11-21 khởi chạy lại Vite ở `0.0.0.0:5181` trên **cùng ID sandbox**, kiểm tra HTML/JS/app trong browser nội bộ đạt; công cụ web độc lập không mở được URL mới, và người dùng xác nhận **cổng 5181 cũng trả 502 trên Safari**. Chưa có URL Internet hoạt động hay kiểm thử WebGL 2/iPhone; xem [TEST_REPORT.md](TEST_REPORT.md).
 - Browser Chromium headless báo WebGL 2 `ready`, không tràn ngang 430/375/320 px; fallback WebGL 2 và WebGPU tùy chọn có kiểm thử giả lập. Chưa có test thật trên iPhone/PC của người dùng.
 - CI GitHub Actions: **Verified trên PR #2** (`build-and-test` SUCCESS, commit `262c7d8`); [job URL](https://github.com/Duy1811/THE-FALLEN/actions/runs/44884262901/job/136786012091), các bước và giới hạn ở [TEST_REPORT.md](TEST_REPORT.md).
