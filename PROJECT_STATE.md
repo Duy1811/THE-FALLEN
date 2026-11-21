@@ -1,16 +1,16 @@
 # PROJECT_STATE — Trạng thái dự án THE FALLEN
 
-> Cập nhật: 2026-11-21 — M1 Project Foundation **Partial** (tài liệu Giai đoạn A từ PR #1 đã merge; ứng dụng khung và test cục bộ đã triển khai; chưa nghiệm thu iPhone thật).
+> Cập nhật: 2026-11-21 — M1 Project Foundation **Partial** (Giai đoạn A từ PR #1 đã merge; ứng dụng khung, test sandbox và CI PR #2 thành công; chưa nghiệm thu iPhone thật).
 > Tài liệu này là nguồn sự thật về trạng thái dự án. Mọi trạng thái tuân thủ [README.md](README.md#quy-tắc-trạng-thái). Không đánh dấu Verified chỉ vì tài liệu hoặc workflow đã được viết.
 
 ## Tình trạng dự án
 
-- **Giai đoạn hiện tại:** M1 — Project Foundation; **Partial**, không đánh dấu hoàn thành khi chưa có xác minh trên iPhone thật và CI.
+- **Giai đoạn hiện tại:** M1 — Project Foundation; **Partial**. CI đã thành công trên PR #2, nhưng chưa có xác minh Safari/WebGL 2 trên iPhone thật.
 - **Mã nguồn nền tảng:** Implemented — React + TypeScript + Vite, trang chẩn đoán Three.js/WebGL 2, trạng thái WebGPU tùy chọn, Vitest, Playwright, GitHub Actions CI; xem [README.md](README.md#chạy-ứng-dụng-m1).
 - **Mã nguồn game:** Not Started — chưa có gameplay, nhân vật, thế giới, physics, save.
 - **Tài nguyên game:** Not Started — chưa có model, texture, animation, audio.
 - **Backend / đăng nhập:** Not Started.
-- **Kiểm thử:** Verified **cục bộ** cho typecheck, build, 4 Vitest và 5 Playwright trong Chromium mobile emulation; **Blocked** đối với Safari/WebGL 2 trên iPhone 15 Pro Max thật và WebKit cục bộ; CI chờ kết quả PR. Xem [TEST_REPORT.md](TEST_REPORT.md) và [log](evidence/M1_LOCAL_VERIFICATION.md).
+- **Kiểm thử:** Verified **cục bộ** cho typecheck, build, 4 Vitest và 5 Playwright trong Chromium mobile emulation; Verified **CI PR #2** cho các bước typecheck/build/Vitest/Playwright Chromium + WebKit ([job](https://github.com/Duy1811/THE-FALLEN/actions/runs/44884262901/job/136786012091)). **Blocked** với Safari/WebGL 2 trên iPhone 15 Pro Max thật và WebKit cục bộ. Xem [TEST_REPORT.md](TEST_REPORT.md) và [log](evidence/M1_LOCAL_VERIFICATION.md).
 - **Thiết bị kiểm thử:** iPhone 15 Pro Max là mục tiêu chính nhưng không có thiết bị thật trong sandbox. PC của người dùng chưa sẵn sàng; headless Chromium trong sandbox không thay thế kiểm thử PC thật.
 
 ## Các quyết định đã xác nhận
@@ -45,14 +45,14 @@ Chi tiết và quy trình thay đổi quyết định: [DECISION_LOG.md](DECISIO
 | Bổ sung tài liệu trong PR #1: sáu khu vực chính, năm loại quan hệ, hồ sơ Seraphine – The Healer, giới hạn nội dung 18+ (GDD, DECISION_LOG D-012 đến D-015, ROADMAP, FEATURE_MATRIX, IMPLEMENTATION_MATRIX) | Implemented | Các tệp đã cập nhật trong PR #1; đã kiểm tra lại liên kết và tính nhất quán |
 | Ứng dụng khung M1 và diagnostic WebGL 2 / WebGPU tùy chọn | Implemented | `src/`, `index.html`, `package.json`, `vite.config.ts`; build và thử trình duyệt cục bộ trong [TEST_REPORT.md](TEST_REPORT.md) |
 | Typecheck, build, Vitest, Playwright Chromium mobile (430/375/320 px), WebGL 2 trong sandbox | Verified (chỉ sandbox) | [Log lệnh/kết quả](evidence/M1_LOCAL_VERIFICATION.md), [TEST_REPORT.md](TEST_REPORT.md) |
-| Workflow GitHub Actions cho PR vào `main` | Implemented | `.github/workflows/ci.yml`; chưa có kết quả CI đến khi PR chạy |
+| Workflow GitHub Actions cho PR vào `main` | Verified trên PR #2 | `.github/workflows/ci.yml`; [job build-and-test success](https://github.com/Duy1811/THE-FALLEN/actions/runs/44884262901/job/136786012091) (commit `262c7d8`) |
 
-> Các hạng mục tài liệu Giai đoạn A vẫn là **Implemented** ở mức đã viết. Chỉ kết quả kiểm thử thực sự đã chạy trên sandbox được ghi **Verified**; không suy ra hỗ trợ trên iPhone thật.
+> Các hạng mục tài liệu Giai đoạn A vẫn là **Implemented** ở mức đã viết. Chỉ kiểm thử thực sự đã chạy trên sandbox hoặc CI được ghi **Verified** theo đúng môi trường đó; không suy ra hỗ trợ trên iPhone thật.
 
 ## Công việc chưa hoàn thành
 
 - Xác nhận `npm run dev`, trang chủ và **WebGL 2 trên Safari iPhone 15 Pro Max thật** — Blocked cho đến khi người dùng mở preview trên thiết bị và cung cấp bằng chứng. Kiểm thử màn hình giả lập **không** đáp ứng điều kiện này.
-- Chạy workflow CI cho Vitest + Playwright cả Chromium/WebKit và ghi kết quả — chờ PR. Không tự merge/tag M1 khi nghiệm thu chưa đầy đủ.
+- CI Vitest + Playwright Chromium/WebKit đã thành công trên [PR #2](https://github.com/Duy1811/THE-FALLEN/pull/2). PR vẫn mở; **không tự merge/tag M1** khi kiểm thử iPhone thật chưa đầy đủ.
 - Toàn bộ mã nguồn **game**, tài nguyên game, physics, backend — Not Started (đúng giới hạn M1).
 - Định nghĩa chi tiết nhân vật còn lại (ngoài Seraphine đã chốt), bản đồ khu vực, kịch bản hội thoại — Not Started (GDD mới ở mức thiết kế khung; sáu khu vực mới chốt vai trò dự kiến).
 
@@ -68,13 +68,13 @@ Chi tiết và quy trình thay đổi quyết định: [DECISION_LOG.md](DECISIO
 | R-06 | WebGPU chỉ tùy chọn → không được phụ thuộc WebGPU cho tính năng bắt buộc | Thấp | Implemented — D-003; mã M1 chỉ phát hiện API, không dùng để render |
 | R-07 | Chưa kiểm thử Safari/WebGL 2 trên iPhone 15 Pro Max thật hoặc truy cập preview từ thiết bị | Cao | Blocked — cần người dùng chạy checklist trên iPhone và ghi bằng chứng |
 | R-08 | Gói Three.js diagnostic 526 kB minified (132 kB gzip) vượt ngưỡng cảnh báo 500 kB của Vite | Trung bình | Partial — đã tách tải động khỏi UI (UI 73 kB gzip); cần tiếp tục theo dõi hiệu năng mobile M2 |
-| R-09 | Sandbox hạn chế tải WebKit từ Playwright CDN | Trung bình | Blocked cục bộ — chờ CI GitHub Actions chạy WebKit; không coi mô phỏng Chromium là Safari |
+| R-09 | Sandbox hạn chế tải WebKit từ Playwright CDN | Trung bình | Blocked cục bộ — CI GitHub Actions đã cài WebKit và chạy E2E thành công; WebKit Linux vẫn không phải iPhone Safari |
 
 ## Trạng thái từng milestone
 
 | Milestone | Nội dung | Trạng thái | Ghi chú |
 |---|---|---|---|
-| M1 | Project Foundation | Partial | App/test cục bộ có bằng chứng; CI chờ PR; iPhone Safari thật chưa kiểm thử |
+| M1 | Project Foundation | Partial | App/test sandbox và CI có bằng chứng; iPhone Safari thật chưa kiểm thử |
 | M2 | Character & 3D World | Not Started | |
 | M3 | Abilities & Combat | Not Started | |
 | M4 | NPC & World Systems | Not Started | |
@@ -97,4 +97,4 @@ Chi tiết: [ROADMAP.md](ROADMAP.md). Công việc tiếp theo: [NEXT_TASK.md](N
 - `npm ci`, `npm run typecheck`, `npm run build`, `npm run test:unit` và Playwright Chromium headless mobile: **Verified cục bộ**, log gốc ở [evidence/M1_LOCAL_VERIFICATION.md](evidence/M1_LOCAL_VERIFICATION.md).
 - Vite dev bind `0.0.0.0:5173`, request dùng Host của preview Arena trả HTTP 200; production preview cục bộ cũng trả HTTP 200 và khởi tạo WebGL 2. **Không** chứng minh URL chạy trên iPhone Safari.
 - Browser Chromium headless báo WebGL 2 `ready`, không tràn ngang 430/375/320 px; fallback WebGL 2 và WebGPU tùy chọn có kiểm thử giả lập. Chưa có test thật trên iPhone/PC của người dùng.
-- CI GitHub Actions: workflow **Implemented**, kết quả **chưa xác minh** đến khi PR chạy; xem [TEST_REPORT.md](TEST_REPORT.md).
+- CI GitHub Actions: **Verified trên PR #2** (`build-and-test` SUCCESS, commit `262c7d8`); [job URL](https://github.com/Duy1811/THE-FALLEN/actions/runs/44884262901/job/136786012091), các bước và giới hạn ở [TEST_REPORT.md](TEST_REPORT.md).

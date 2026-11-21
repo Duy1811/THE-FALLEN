@@ -1,6 +1,6 @@
 # THE FALLEN – Kỷ Nguyên Siêu Nhân
 
-> **Trạng thái hiện tại:** M1 Project Foundation — **Partial**. Đã có ứng dụng khung, WebGL 2 diagnostic, test và workflow CI; kiểm thử Safari/WebGL 2 trên iPhone 15 Pro Max thật vẫn chưa thực hiện. **Chưa có gameplay.**
+> **Trạng thái hiện tại:** M1 Project Foundation — **Partial**. Ứng dụng khung, WebGL 2 diagnostic và [CI PR #2](https://github.com/Duy1811/THE-FALLEN/pull/2) đã chạy; kiểm thử Safari/WebGL 2 trên iPhone 15 Pro Max thật vẫn chưa thực hiện. **Chưa có gameplay.**
 > Tài liệu thiết kế và [DECISION_LOG.md](DECISION_LOG.md) vẫn là cơ sở quyết định; xem [PROJECT_STATE.md](PROJECT_STATE.md) và [TEST_REPORT.md](TEST_REPORT.md) để phân biệt Implemented / Verified / Blocked.
 
 ## Giới thiệu
@@ -80,7 +80,7 @@ Các lớp `Game`, `Data`, `Save` và physics Rapier là **kiến trúc dự ki�
 
 | Milestone | Nội dung | Trạng thái |
 |---|---|---|
-| M1 | Project Foundation | Partial — ứng dụng khung và test cục bộ đã có; chờ xác minh CI và iPhone Safari thật |
+| M1 | Project Foundation | Partial — app/test cục bộ và CI đã xác minh; iPhone Safari thật chưa kiểm thử |
 | M2 | Character & 3D World | Not Started |
 | M3 | Abilities & Combat | Not Started |
 | M4 | NPC & World Systems | Not Started |
