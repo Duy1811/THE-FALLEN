@@ -4,7 +4,17 @@
 
 ## [Unreleased]
 
-- Chưa có thay đổi nào sau Giai đoạn A.
+### Added (bổ sung trong PR #1 — 2026-11-21)
+
+- GDD.md: sáu khu vực chính (New Eden, Iron District, Silver Coast, Old Quarter, Blacksite 09, Vanguard Tower) với vai trò dự kiến; hồ sơ Seraphine – The Healer (Absolute Restoration, lựa chọn bảo vệ/giúp đỡ/xây dựng quan hệ/hấp thụ, phương án thay thế cho bệnh nhân); năm loại quan hệ (Friendship, Attraction, Romance, Trust, Conflict); giới hạn nội dung 18+ (đồng thuận, người trưởng thành, không khiêu dâm trực diện, cảnh báo nội dung, tùy chọn giảm máu me/nhạy cảm).
+- DECISION_LOG.md: quyết định D-012 đến D-015 (đã phê duyệt).
+- ROADMAP.md: M2 (sáu khu vực), M5 (tuyến truyện Seraphine), M6 (năm loại quan hệ, giới hạn 18+, cài đặt nội dung).
+- FEATURE_MATRIX.md và IMPLEMENTATION_MATRIX.md: tính năng F-26 đến F-29 (trạng thái Not Started).
+- PROJECT_STATE.md: cập nhật quyết định đã xác nhận và công việc hoàn thành.
+
+### Notes
+
+- Bổ sung này chỉ sửa tài liệu Markdown; chưa có mã nguồn, dependency hay tài nguyên mới. Cốt truyện chi tiết từng khu vực, tuyến quan hệ/kết thúc của Seraphine và phân loại độ tuổi chính thức vẫn chưa được phê duyệt, chốt ở các milestone tương ứng.
 
 ## [0.1.0] - 2026-11-21 — Giai đoạn A: Thiết lập nền tảng tài liệu
 

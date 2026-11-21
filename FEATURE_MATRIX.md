@@ -29,5 +29,9 @@
 | F-23 | Local save bằng IndexedDB | M7 | Not Started | PC Browser, Mobile Browser |
 | F-24 | Tài khoản và cloud save (API + PostgreSQL) | M7 | Not Started | PC Browser, Mobile Browser |
 | F-25 | Tối ưu hiệu năng và kiểm thử toàn diện | M8 | Not Started | PC Browser, Mobile Browser |
+| F-26 | Sáu khu vực chính (New Eden, Iron District, Silver Coast, Old Quarter, Blacksite 09, Vanguard Tower) | M2 | Not Started | PC Browser, Mobile Browser |
+| F-27 | Năm loại quan hệ (Friendship, Attraction, Romance, Trust, Conflict) | M6 | Not Started | PC Browser, Mobile Browser |
+| F-28 | Seraphine – The Healer (Absolute Restoration; bảo vệ/giúp đỡ/xây dựng quan hệ/hấp thụ; phương án thay thế cho bệnh nhân) | M5 | Not Started | PC Browser, Mobile Browser |
+| F-29 | Giới hạn nội dung 18+, cảnh báo nội dung, tùy chọn giảm máu me/nhạy cảm | M6 | Not Started | PC Browser, Mobile Browser |
 
 > Không tự thêm tính năng ngoài [GDD.md](GDD.md). Thêm tính năng phải cập nhật GDD, ma trận này và [DECISION_LOG.md](DECISION_LOG.md).

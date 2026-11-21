@@ -15,8 +15,8 @@
 ## M2: Character & 3D World
 
 - **Mục tiêu:** Nhân vật chính điều khiển được trong thế giới 3D.
-- **Phạm vi:** Nhân vật góc nhìn thứ ba, di chuyển/camera, thành phố chính cơ bản, 1 khu vực đặc biệt tải riêng, asset pipeline GLB, Rapier cơ bản.
-- **Deliverables:** Nhân vật di chuyển được; khu vực thử nghiệm; pipeline asset hoạt động; ngân sách hiệu năng ban đầu.
+- **Phạm vi:** Nhân vật góc nhìn thứ ba, di chuyển/camera, sáu khu vực chính (New Eden, Iron District, Silver Coast, Old Quarter, Blacksite 09, Vanguard Tower) ở mức khung, khu vực đặc biệt tải riêng, asset pipeline GLB, Rapier cơ bản.
+- **Deliverables:** Nhân vật di chuyển được; sáu khu vực ở mức khung theo vai trò đã chốt (D-012); pipeline asset hoạt động; ngân sách hiệu năng ban đầu.
 - **Acceptance criteria:** Điều khiển nhân vật trên mobile và PC; khu vực đặc biệt tải riêng đúng; đạt ngân sách hiệu năng đề ra.
 - **Dependencies:** M1.
 - **Rủi ro:** Hiệu năng mobile; tải khu vực; điều khiển chạm.
@@ -45,8 +45,8 @@
 ## M5: Story & Missions
 
 - **Mục tiêu:** Cốt truyện và nhiệm vụ hoàn chỉnh.
-- **Phạm vi:** 5 chương, 15–20 side quests, hội thoại, 5–6 boss, 4 ending, liên kết THE PRICE và phe phái.
-- **Deliverables:** Toàn bộ nội dung truyện; nhiệm vụ chính/phụ; boss; ending.
+- **Phạm vi:** 5 chương, 15–20 side quests, hội thoại, 5–6 boss, 4 ending, tuyến truyện Seraphine – The Healer (bảo vệ/giúp đỡ/xây dựng quan hệ/hấp thụ; phương án thay thế cho bệnh nhân nếu hấp thụ), liên kết THE PRICE và phe phái.
+- **Deliverables:** Toàn bộ nội dung truyện; nhiệm vụ chính/phụ; boss; ending; tuyến truyện Seraphine theo D-014.
 - **Acceptance criteria:** Chơi hết game từ đầu đến ending; lựa chọn ảnh hưởng ending; nội dung khớp GDD.
 - **Dependencies:** M3, M4.
 - **Rủi ro:** Khối lượng nội dung lớn; nhất quán cốt truyện.
@@ -55,9 +55,9 @@
 ## M6: Relationships & Adult Content
 
 - **Mục tiêu:** Hệ thống quan hệ và nội dung người lớn đúng ranh giới đã chốt.
-- **Phạm vi:** Quan hệ nhân vật, tùy chọn lãng mạn theo nguyên tắc đồng thuận, cài đặt nội dung, phân loại độ tuổi.
-- **Deliverables:** Hệ quan hệ; cài đặt nội dung; tài liệu ranh giới nội dung đã phê duyệt.
-- **Acceptance criteria:** Ranh giới nội dung được phê duyệt trước khi triển khai; cài đặt nội dung hoạt động; không nội dung khiêu dâm trực diện.
+- **Phạm vi:** Năm loại quan hệ (Friendship, Attraction, Romance, Trust, Conflict), tùy chọn lãng mạn theo nguyên tắc đồng thuận, giới hạn nội dung 18+ (D-015), cài đặt nội dung, cảnh báo nội dung, phân loại độ tuổi.
+- **Deliverables:** Hệ quan hệ năm loại; cài đặt nội dung và tùy chọn giảm máu me/nhạy cảm; tài liệu ranh giới nội dung đã phê duyệt.
+- **Acceptance criteria:** Ranh giới nội dung được phê duyệt trước khi triển khai; cài đặt nội dung hoạt động; không nội dung khiêu dâm trực diện; nhân vật trong nội dung thân mật đều là người trưởng thành.
 - **Dependencies:** M4, M5; phê duyệt ranh giới nội dung (DECISION_LOG).
 - **Rủi ro:** Ranh giới nội dung; nhất quán với THE PRICE.
 - **Cách kiểm thử:** Kiểm tra cài đặt nội dung; rà soát nội dung theo ranh giới đã phê duyệt.

@@ -29,6 +29,10 @@
 | F-23 | Local save IndexedDB | Implemented — TECHNICAL_ARCHITECTURE mục 5 | Not Started | Not Started | Not Started | — |
 | F-24 | Account/cloud save API + PostgreSQL | Implemented — TECHNICAL_ARCHITECTURE mục 6 | Not Started | Not Started | Not Started | — |
 | F-25 | Tối ưu và QA toàn diện | Implemented — ROADMAP M8 | Not Started | Not Started | Not Started | — |
+| F-26 | Sáu khu vực chính | Implemented — GDD mục 3, D-012 | Not Started | Not Started | Not Started | — |
+| F-27 | Năm loại quan hệ | Implemented — GDD mục 10, D-013 | Not Started | Not Started | Not Started | — |
+| F-28 | Seraphine – The Healer | Implemented — GDD mục 4, D-014 | Not Started | Not Started | Not Started | — |
+| F-29 | Giới hạn nội dung 18+ và cài đặt nội dung | Implemented — GDD mục 10, D-015 | Not Started | Not Started | Not Started | — |
 
 ## Quy tắc cập nhật
 

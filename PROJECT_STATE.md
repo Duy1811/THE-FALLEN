@@ -1,6 +1,6 @@
 # PROJECT_STATE — Trạng thái dự án THE FALLEN
 
-> Cập nhật: 2026-11-21 — Giai đoạn A (Thiết lập nền tảng tài liệu).
+> Cập nhật: 2026-11-21 — Giai đoạn A (Thiết lập nền tảng tài liệu), bổ sung tài liệu trong PR #1 (sáu khu vực, hệ thống quan hệ, Seraphine, giới hạn 18+).
 > Tài liệu này là nguồn sự thật về trạng thái dự án. Mọi trạng thái tuân thủ quy tắc ở [README.md](README.md#quy-tắc-trạng-thái). Không đánh dấu Verified chỉ vì tài liệu đã được viết.
 
 ## Tình trạng dự án
@@ -26,6 +26,11 @@
 | D-008 | Quy trình Git: `main` ổn định, `develop`, `feature/*`, `fix/*`, PR vào `main`, không force push | Đã chốt |
 | D-009 | Lưu trữ: IndexedDB cho local save; backend API + PostgreSQL cho account/cloud save | Đã chốt |
 | D-010 | M6 (Relationships & Adult Content) tuân thủ ranh giới nội dung trong [GDD.md](GDD.md#quan-hệ-và-nội-dung-người-lớn-m6) | Đã chốt |
+| D-011 | Sáu hệ năng lực và năm phe phái (xem DECISION_LOG) | Đã chốt |
+| D-012 | Sáu khu vực chính: New Eden, Iron District, Silver Coast, Old Quarter, Blacksite 09, Vanguard Tower (chỉ chốt vai trò dự kiến) | Đã chốt |
+| D-013 | Năm loại quan hệ: Friendship, Attraction, Romance, Trust, Conflict | Đã chốt |
+| D-014 | Seraphine – The Healer: Absolute Restoration, cứu chữa người nghèo; lựa chọn bảo vệ/giúp đỡ/xây dựng quan hệ/hấp thụ; hấp thụ ảnh hưởng bệnh nhân, phải có phương án thay thế | Đã chốt |
+| D-015 | Giới hạn nội dung 18+ (đồng thuận, người trưởng thành, không khiêu dâm trực diện, cảnh báo nội dung, tùy chọn giảm máu me/nhạy cảm) | Đã chốt |
 
 Chi tiết và quy trình thay đổi quyết định: [DECISION_LOG.md](DECISION_LOG.md).
 
@@ -36,6 +41,7 @@ Chi tiết và quy trình thay đổi quyết định: [DECISION_LOG.md](DECISIO
 | Hệ thống tài liệu Giai đoạn A (14 tệp Markdown + `.gitignore`) | Implemented | Các tệp trong repo; đã kiểm tra liên kết nội bộ và tính nhất quán (xem mục Kiểm tra bên dưới) |
 | README, PROJECT_STATE, GDD, TECHNICAL_ARCHITECTURE, ROADMAP, DECISION_LOG, NEXT_TASK, CHANGELOG, BUG_TRACKER, TEST_REPORT, ASSET_MANIFEST, FEATURE_MATRIX, IMPLEMENTATION_MATRIX, HANDOFF_REPORT | Implemented | Tệp tồn tại trong repo, nội dung đã viết xong |
 | `.gitignore` cho React/Node/TypeScript | Implemented | Tệp `.gitignore` trong repo |
+| Bổ sung tài liệu trong PR #1: sáu khu vực chính, năm loại quan hệ, hồ sơ Seraphine – The Healer, giới hạn nội dung 18+ (GDD, DECISION_LOG D-012 đến D-015, ROADMAP, FEATURE_MATRIX, IMPLEMENTATION_MATRIX) | Implemented | Các tệp đã cập nhật trong PR #1; đã kiểm tra lại liên kết và tính nhất quán |
 
 > Lưu ý: "Implemented" ở đây có nghĩa tài liệu đã được viết. Chưa có bất kỳ hạng mục nào được đánh dấu **Verified** vì chưa có mã nguồn hay kiểm thử thực tế.
 
@@ -43,7 +49,7 @@ Chi tiết và quy trình thay đổi quyết định: [DECISION_LOG.md](DECISIO
 
 - Scaffolding M1: React app, `package.json`, cấu hình Vite/TypeScript, Three.js scene tối thiểu — Not Started (cố ý chưa làm ở Giai đoạn A).
 - Toàn bộ mã nguồn game, tài nguyên, backend, test — Not Started.
-- Định nghĩa chi tiết nhân vật (tên, hồ sơ), bản đồ khu vực, kịch bản hội thoại — Not Started (GDD mới ở mức thiết kế khung).
+- Định nghĩa chi tiết nhân vật còn lại (ngoài Seraphine đã chốt), bản đồ khu vực, kịch bản hội thoại — Not Started (GDD mới ở mức thiết kế khung; sáu khu vực mới chốt vai trò dự kiến).
 - Gắn tag milestone, CI/CD — Not Started.
 
 ## Rủi ro và blocker

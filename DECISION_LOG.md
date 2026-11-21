@@ -15,6 +15,10 @@
 | D-009 | 2026-11-21 | Lưu trữ: IndexedDB cho local save; backend API + PostgreSQL cho account/cloud save. | Save hoạt động offline và đồng bộ khi có backend | Đã phê duyệt |
 | D-010 | 2026-11-21 | M6 tuân thủ ranh giới nội dung trong GDD (đồng thuận, không khiêu dâm trực diện, cài đặt nội dung, phân loại độ tuổi chốt ở M6). | Ranh giới nội dung và pháp lý | Đã phê duyệt |
 | D-011 | 2026-11-21 | Sáu hệ năng lực: Energy, Strength, Speed, Psychic, Biological, Shadow. Năm phe phái: VANGUARD GLOBAL, THE ASCENDANTS, THE UNDERGROUND, BLACK MARKET, CIVILIAN FRONT. | Khung thế giới và gameplay | Đã phê duyệt |
+| D-012 | 2026-11-21 | Sáu khu vực chính: New Eden, Iron District, Silver Coast, Old Quarter, Blacksite 09, Vanguard Tower. Chỉ chốt chức năng/vai trò dự kiến; cốt truyện chi tiết từng khu vực chưa được phê duyệt. | Khung thế giới | Đã phê duyệt |
+| D-013 | 2026-11-21 | Năm loại quan hệ: Friendship, Attraction, Romance, Trust, Conflict. Quan hệ ảnh hưởng hội thoại, nhiệm vụ, hành vi nhân vật và kết quả cốt truyện. | Hệ thống quan hệ M6 | Đã phê duyệt |
+| D-014 | 2026-11-21 | Seraphine – The Healer: phụ nữ trưởng thành, năng lực Absolute Restoration, cứu chữa người nghèo. Người chơi có thể bảo vệ, giúp đỡ, xây dựng quan hệ hoặc hấp thụ năng lực. Nếu hấp thụ, bệnh nhân phụ thuộc vào cô bị ảnh hưởng; phải có phương án thay thế để bệnh nhân tiếp tục được cứu chữa. Không tự tạo thêm kết thúc hoặc chi tiết quan hệ chưa được phê duyệt. | Hồ sơ nhân vật đã chốt | Đã phê duyệt |
+| D-015 | 2026-11-21 | Giới hạn nội dung 18+: bạo lực hư cấu, ngôn ngữ mạnh, tình cảm và yếu tố gợi cảm, cảnh thân mật có đồng thuận, nhân vật trong nội dung thân mật phải là người trưởng thành, không biến bạo lực cưỡng ép thành nội dung tình dục, không phát triển thành sản phẩm khiêu dâm, không mô tả tình dục trực diện, có cảnh báo nội dung và tùy chọn giảm máu me/nhạy cảm. | Ranh giới nội dung M6 | Đã phê duyệt |
 
 ## Quy trình thay đổi quyết định
 

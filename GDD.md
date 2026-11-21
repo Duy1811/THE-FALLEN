@@ -31,13 +31,37 @@
 - **Khu vực đặc biệt:** 6 khu vực tổng cộng; khu vực đặc biệt được tải riêng (streaming/loading riêng) để tối ưu mobile.
 - **Bối cảnh 2042:** đô thị khoa học viễn tưởng, kiểm soát xã hội bởi VANGUARD GLOBAL, tầng lớp Enhanced và thường dân.
 
+### Sáu khu vực chính (đã chốt)
+
+| Khu vực | Vai trò dự kiến |
+|---|---|
+| New Eden | Thành phố chính, kết nối tương đối liền mạch; trung tâm sinh hoạt, nhiệm vụ và NPC |
+| Iron District | Khu công nghiệp và lao động nặng; không gian khắc nghiệt, nơi tập trung tầng lớp lao động |
+| Silver Coast | Khu ven biển, giao thương và dịch vụ; đối lập giàu — nghèo trong thành phố |
+| Old Quarter | Khu phố cũ, dân cư thường; lưu giữ ký ức và lịch sử của thành phố |
+| Blacksite 09 | Cơ sở bí mật của VANGUARD GLOBAL; khu vực đặc biệt, tải riêng, hạn chế truy cập |
+| Vanguard Tower | Trung tâm quyền lực của VANGUARD GLOBAL; khu vực đặc biệt, tải riêng |
+
+> Đây là mô tả chức năng và vai trò dự kiến của từng khu vực. Cốt truyện chi tiết, bản đồ và nội dung từng khu vực **chưa được phê duyệt**, chốt ở M2–M5. Không tự ý tạo cốt truyện chi tiết chưa được phê duyệt.
+
 ## 4. Nhân vật
 
 - **Nhân vật chính:** từng là nhân viên nghiên cứu của VANGUARD GLOBAL. Có khả năng hấp thụ năng lực. Khởi đầu yếu, phải dùng kỹ năng, môi trường và thiết bị. Hấp thụ năng lực luôn có cái giá (THE PRICE). Tên, ngoại hình, hồ sơ chi tiết: **chưa thiết kế**.
-- **Nhân vật chính/cốt truyện:** 10–12 người (mục tiêu quy mô) — danh sách và hồ sơ: **chưa thiết kế**.
+- **Nhân vật chính/cốt truyện:** 10–12 người (mục tiêu quy mô) — Seraphine (mục dưới) là nhân vật đầu tiên đã có hồ sơ đã chốt; các nhân vật còn lại: **chưa thiết kế**.
 - **Người mang năng lực có story:** 12–20 người — **chưa thiết kế**.
 - **NPC thường:** 20–30 NPC — **chưa thiết kế**.
 - **Boss:** 5–6 boss — **chưa thiết kế**.
+
+### Seraphine – The Healer (đã chốt)
+
+- Là **phụ nữ trưởng thành**.
+- Sở hữu năng lực **Absolute Restoration** — khả năng hồi phục tuyệt đối.
+- Dùng năng lực để **cứu chữa người nghèo** trong thành phố.
+- Người chơi có thể: **bảo vệ** cô, **giúp đỡ** cô, **xây dựng quan hệ** với cô, hoặc **lựa chọn hấp thụ năng lực** của cô.
+- Nếu người chơi hấp thụ năng lực của Seraphine, **những bệnh nhân phụ thuộc vào cô sẽ bị ảnh hưởng**.
+- Phải có **phương án thay thế** để bệnh nhân tiếp tục được cứu chữa (chi tiết phương án chốt ở M5; không tự bịa chi tiết chưa được phê duyệt).
+- Hấp thụ năng lực của Seraphine kích hoạt THE PRICE như mọi lần hấp thụ khác.
+- Chi tiết tuyến quan hệ và kết thúc liên quan Seraphine: **chưa được phê duyệt**, không tự tạo thêm.
 
 > Không tự thêm nhân vật ngoài danh sách quy mô này khi chưa cập nhật GDD và DECISION_LOG.
 
@@ -111,11 +135,32 @@ Bốn ending mục tiêu:
 
 ## 10. Quan hệ và nội dung người lớn (M6)
 
-- Hệ thống quan hệ với nhân vật (thân thiết, đồng minh, thù địch) ảnh hưởng hội thoại, nhiệm vụ và ending.
-- Tùy chọn quan hệ lãng mạn với một số nhân vật, theo nguyên tắc: **đồng thuận rõ ràng, không ép buộc, không nội dung khiêu dâm trực diện**.
-- Cài đặt nội dung trong game: cho phép tắt/mờ các yếu tố nhạy cảm.
-- Phân loại độ tuổi và ranh giới nội dung chi tiết: **chưa chốt**, phải thiết kế và phê duyệt ở M6 trước khi triển khai; mọi thay đổi ghi vào DECISION_LOG.
-- Nội dung M6 không được mâu thuẫn với THE PRICE (mất cảm xúc, phân mảnh nhân cách ảnh hưởng quan hệ).
+### Năm loại quan hệ (đã chốt)
+
+| Loại quan hệ | Ảnh hưởng dự kiến |
+|---|---|
+| Friendship (Tình bạn) | Hội thoại thân thiện, nhiệm vụ hỗ trợ lẫn nhau, hành vi nhân vật tích cực |
+| Attraction (Hấp dẫn) | Điều kiện mở tuyến lãng mạn, thay đổi hội thoại và hành vi nhân vật |
+| Romance (Lãng mạn) | Quan hệ lãng mạn có sự đồng thuận; ảnh hưởng nhiệm vụ và kết quả cốt truyện (chi tiết chốt ở M6) |
+| Trust (Tin cậy) | Chia sẻ thông tin, hợp tác trong nhiệm vụ, quyết định hỗ trợ hoặc phản bội |
+| Conflict (Mâu thuẫn) | Đối đầu, thay đổi hành vi nhân vật, ảnh hưởng phe phái và kết quả cốt truyện |
+
+Quan hệ ảnh hưởng đến **hội thoại, nhiệm vụ, hành vi nhân vật và kết quả cốt truyện**. Chi tiết cơ chế (số liệu, ngưỡng, tuyến cụ thể) chốt ở M6.
+
+### Giới hạn nội dung 18+ (đã chốt)
+
+Game có thể chứa các yếu tố sau, trong giới hạn đã chốt:
+
+- **Bạo lực hư cấu.**
+- **Ngôn ngữ mạnh.**
+- **Tình cảm và yếu tố gợi cảm.**
+- **Cảnh thân mật có sự đồng thuận.**
+- Nhân vật trong nội dung thân mật **phải là người trưởng thành**.
+- **Không** biến bạo lực cưỡng ép thành nội dung tình dục.
+- **Không** phát triển game thành sản phẩm khiêu dâm; **không** mô tả tình dục trực diện.
+- Có **cảnh báo nội dung** và tùy chọn **giảm mức độ máu me, nhạy cảm** trong cài đặt.
+
+Phân loại độ tuổi chính thức và chi tiết triển khai: chốt ở M6; mọi thay đổi ghi vào DECISION_LOG. Nội dung M6 không được mâu thuẫn với THE PRICE (mất cảm xúc, phân mảnh nhân cách ảnh hưởng quan hệ).
 
 ## 11. Quy mô và giới hạn sản xuất
 
