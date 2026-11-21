@@ -1,0 +1,54 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+out/
+.next/
+.nuxt/
+.svelte-kit/
+.turbo/
+.vite/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment variables (never commit secrets)
+.env
+.env.*
+!.env.example
+*.local
+
+# Test / coverage
+coverage/
+.nyc_output/
+playwright-report/
+test-results/
+playwright/.cache/
+
+# TypeScript / tooling cache
+*.tsbuildinfo
+.eslintcache
+.parcel-cache/
+.cache/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+
+# Local data / saves (never commit user data)
+*.sqlite
+*.sqlite-journal
+*.db
