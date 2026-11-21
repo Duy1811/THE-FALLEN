@@ -1,27 +1,49 @@
 # TEST_REPORT — Báo cáo kiểm thử THE FALLEN
 
-> Trạng thái: **Not Started** — chưa có kiểm thử nào được chạy vì chưa có mã nguồn. Không có kết quả kiểm thử nào được tuyên bố trong tài liệu này.
+> Cập nhật 2026-11-21. **M1 Partial**: typecheck/build/test **Verified trong sandbox và CI PR #2**; cả preview cũ (5173) và URL thử mới (5181) **không truy cập được từ Safari theo báo cáo của người dùng** (502 `SANDBOX NOT FOUND`, `Sandbox lifecycle 7`). **Chưa có kết quả Safari/WebGL 2 trên iPhone 15 Pro Max thật**: lỗi 502 xảy ra trước khi tải ứng dụng, không phải kết quả kiểm tra WebGL 2. Bằng chứng: [log cục bộ](evidence/M1_LOCAL_VERIFICATION.md) và [CI trên commit `2012aa6`](https://github.com/Duy1811/THE-FALLEN/actions/runs/44885207389/job/136788903622) (10 Playwright passed, 0 skipped, 0 failed).
 
 ## Môi trường kiểm thử
 
-| Môi trường | Trạng thái |
+| Môi trường | Trạng thái / giới hạn |
 |---|---|
-| iPhone 15 Pro Max (mobile browser) | Thiết bị mục tiêu chính; chưa kiểm thử vì chưa có ứng dụng |
-| PC (browser) | Blocked — chờ người dùng thông báo PC sẵn sàng |
+| Arena sandbox | Debian 12 x86_64, Node v22.22.3, npm 10.9.8; lần kiểm thử đầu Vite bind `0.0.0.0:5173` và trả HTTP 200 **nội bộ**. Lượt kiểm tra tiếp theo: cùng ID sandbox `iu017fy2i6p4z4obvagj1`, Vite mới bind `0.0.0.0:5181`, process còn sống; **không suy ra proxy Internet còn hoạt động**. |
+| Chromium headless 153 trong sandbox | Browser tạm từ package npm `@sparticuz/chromium` **chỉ dùng để chạy test**, không được thêm vào dependency/lockfile dự án; Playwright dùng Chromium mobile viewport 430 × 932 CSS px (DPR 3), thử thêm 375 và 320 px. Không phải iPhone Safari. |
+| Playwright WebKit giả lập iPhone 15 Pro Max | **Blocked cục bộ**: không có browser đã cài, CDN Playwright ngoài mạng được phép. **Verified trong CI:** cài Chromium/WebKit và chạy bước `npm run test:e2e` thành công. WebKit Linux không thay thế iPhone Safari thật. |
+| iPhone 15 Pro Max / Safari trên thiết bị thật | **Blocked**: người dùng đã thử cả cổng 5173 và 5181 nhưng chỉ nhận 502 `BAD GATEWAY / SANDBOX NOT FOUND / Sandbox lifecycle 7`, **chưa tải được ứng dụng**. Chưa biết phiên bản iOS/Safari, chưa xác nhận WebGL 2 trên thiết bị. Xem [README.md](README.md#xác-minh-trên-thiết-bị-thật-để-nghiệm-thu-m1). |
+| PC thật của người dùng | **Blocked**: chưa được thông báo sẵn sàng. Smoke test desktop trong sandbox không phải kiểm thử PC thật. |
+| GitHub Actions CI | **Verified:** PR #2, run `44885207389`, job `136788903622` (`build-and-test`) **SUCCESS** trên commit `2012aa6f30cd913ca43463343698d6496d72d8b7`; `npm ci`, typecheck, build, Vitest, cài Chromium/WebKit, Playwright đều thành công. Playwright: **10 passed, 0 skipped, 0 failed** trên `chromium-mobile` và `webkit-iphone-15-pro-max`. [Job URL](https://github.com/Duy1811/THE-FALLEN/actions/runs/44885207389/job/136788903622). WebKit Linux không phải Safari trên iPhone thật. |
 
-## Kết quả kiểm thử
+## Kết quả M1 — 2026-11-21
 
-| Ngày | Hạng mục | Môi trường | Kết quả | Bằng chứng |
-|---|---|---|---|---|
-| — | Chưa có kiểm thử nào được thực hiện | — | — | — |
+| Hạng mục | Môi trường / lệnh | Kết quả | Bằng chứng |
+|---|---|---|---|
+| Cài dependency sạch | Sandbox: `npm ci --no-audit --no-fund` | **Verified:** exit 0, 116 packages | [Log gốc](evidence/M1_LOCAL_VERIFICATION.md) |
+| TypeScript strict | Sandbox: `npm run typecheck` | **Verified:** exit 0, không lỗi TypeScript | [Log gốc](evidence/M1_LOCAL_VERIFICATION.md) |
+| Build Vite | Sandbox: `npm run build` | **Verified:** exit 0; UI 233.19 kB / 72.86 kB gzip, Three.js diagnostic chunk 526.02 kB / 131.78 kB gzip | [Log gốc](evidence/M1_LOCAL_VERIFICATION.md) |
+| Vitest | Sandbox: `npm run test:unit` | **Verified:** 4/4 pass (WebGL 2 chỉ request `webgl2`, null/throw fallback, WebGPU API tùy chọn) | [Log gốc](evidence/M1_LOCAL_VERIFICATION.md) |
+| Playwright Chromium mobile | Sandbox: executable Chromium tạm + `npm run test:e2e -- --project=chromium-mobile` | **Verified:** 5/5 pass; trang chính, fallback giả lập, WebGPU không bắt buộc, viewport 430/375/320 px, renderer WebGL 2 thật trên Chromium headless | [Log gốc](evidence/M1_LOCAL_VERIFICATION.md), [tests](tests/e2e/foundation.spec.ts) |
+| WebGL 2 trong browser sandbox | Playwright Chromium headless: canvas `getContext('webgl2')` + Three.js WebGLRenderer | **Verified trên Chromium sandbox:** status `ready`; test ngữ cảnh giả lập không hỗ trợ cho status `unsupported`. **Không** phải xác nhận iPhone Safari. | [Log gốc](evidence/M1_LOCAL_VERIFICATION.md) (bài 2 và 5) |
+| Trang chính / responsive | Chromium headless viewport 430/375/320 px + quan sát màn hình 430 px và desktop trong sandbox | **Verified trong sandbox:** không tràn ngang, điều hướng tới `#diagnostics`; không có runtime page error trong lượt quan sát. Không thử thiết bị thật. | [Log Playwright](evidence/M1_LOCAL_VERIFICATION.md) (bài 1 và 4) |
+| Dev preview Host (lần đầu) | Sandbox: Vite `0.0.0.0:5173`, curl với Host của preview Arena | **Verified nội bộ:** HTTP 200. Người dùng sau đó gặp 502 trên URL này; kiểm tra HTTP nội bộ **không chứng minh** truy cập được qua Internet. | [Log gốc](evidence/M1_LOCAL_VERIFICATION.md) (dòng cuối); báo cáo iPhone của người dùng ngày 2026-11-21 |
+| GitHub Actions CI trên PR #2 | Run `44885207389`, job `136788903622` trên commit `2012aa6f30cd913ca43463343698d6496d72d8b7`: `npm ci`, `npm run typecheck`, `npm run build`, `npm run test:unit`, `npx playwright install --with-deps chromium webkit`, `npm run test:e2e` | **Verified:** job `SUCCESS`, Playwright **10 passed, 0 skipped, 0 failed** trên `chromium-mobile` và `webkit-iphone-15-pro-max`. CI WebKit chạy trên Linux, không chứng minh WebGL 2/Safari trên iPhone thật. | [Job 136788903622](https://github.com/Duy1811/THE-FALLEN/actions/runs/44885207389/job/136788903622) / [PR #2](https://github.com/Duy1811/THE-FALLEN/pull/2) |
+| Safari/WebGL 2 trên iPhone 15 Pro Max thật | Cần người dùng mở **ứng dụng** qua preview còn hoạt động và ghi bằng chứng | **Blocked:** cả URL cũ (5173) và URL thử (5181) đều trả 502 trước khi tải ứng dụng; chưa kiểm thử WebGL 2/iPhone, điều kiện nghiệm thu M1 chưa đạt | Báo cáo Safari của người dùng 2026-11-21; [NEXT_TASK.md](NEXT_TASK.md) |
 
-## Những gì chưa kiểm thử
+## Kiểm tra vòng đời preview — 2026-11-21, khoảng 08:26–08:30 UTC
 
-- Toàn bộ: ứng dụng web, WebGL 2, gameplay, năng lực, THE PRICE, NPC, nhiệm vụ, backend, cloud save, hiệu năng.
-- Kiểm thử trên PC: chưa thực hiện (PC chưa sẵn sàng).
+- **Báo cáo từ iPhone Safari của người dùng:** URL cũ `https://5173-iu017fy2i6p4z4obvagj1.e2b.app/` trả `502 BAD GATEWAY / SANDBOX NOT FOUND / Sandbox lifecycle 7`. Preview cũ **không còn sử dụng được từ phiên Safari đó**. Không có bằng chứng xác nhận VM đã bị xóa; ID sandbox trong shell hiện tại vẫn là `iu017fy2i6p4z4obvagj1`, và process Vite cũ vẫn còn chạy nội bộ khi kiểm tra. Lỗi ở tầng preview/proxy, **không thể kết luận lỗi ứng dụng hay WebGL 2 trên iPhone**.
+- **Khởi động lại preview trên commit `969b5ac` của [PR #2](https://github.com/Duy1811/THE-FALLEN/pull/2):** dừng dev server cũ, chạy `npm run dev -- --port 5181 --strictPort` qua process tool Arena. Process bind `0.0.0.0:5181`; URL ứng viên `https://5181-iu017fy2i6p4z4obvagj1.e2b.app/` vẫn dùng **cùng sandbox ID**. **Người dùng thử độc lập trên Safari iPhone và cũng nhận `502 / SANDBOX NOT FOUND` (~08:29 UTC). URL này KHÔNG phải preview hoạt động qua Internet.**
+- **Verified chỉ trong sandbox:** request kèm Host preview trả HTML của Vite với `<title>THE FALLEN — Project Foundation</title>`, `/@vite/client` và `/src/main.tsx` trả JavaScript HTTP 200. Một tiến trình Chromium riêng tải cổng 5181: `status=200`, heading `THE FALLEN.`, diagnostic `ready`, không có page error. Đây **không** phải phép kiểm tra URL public.
+- **Phiên truy cập web độc lập:** công cụ `fetch_page` mở cả URL cũ, URL ứng viên cổng 5181 (cả `/src/main.tsx`) và cổng 5182 phục vụ HTML tĩnh để đối chứng, đều báo `Failed to fetch page` (không trả mã HTTP để phân biệt lỗi mạng/502). `curl` từ sandbox ra `*.e2b.app` lỗi tại TLS handshake (`SSL_ERROR_SYSCALL`), phù hợp giới hạn egress. **Kiểm tra bổ sung từ Safari của người dùng xác nhận cổng 5181 cũng lỗi 502**, dù browser và server trong sandbox tải Vite bình thường. Không thể dùng HTTP 200 nội bộ để tuyên bố URL public hoạt động. **Trạng thái truy cập preview từ Internet: Blocked; không có URL mới đã xác minh hoạt động.**
+- **Thời hạn preview và cách khôi phục:** Arena không cung cấp thời hạn cố định hay cam kết tồn tại vĩnh viễn. **Chỉ khởi động lại Vite trong sandbox ID cũ không sửa được lỗi proxy hiện tại.** Cần Arena tạo/khôi phục một sandbox có proxy hoạt động (qua chức năng restart/new sandbox trong Arena nếu có, hoặc hỗ trợ Arena). Trong sandbox đó, tiếp tục trên branch PR #2, chạy `npm ci` nếu thiếu dependency rồi dùng process tool chạy `npm run dev -- --port 5181 --strictPort`; lấy URL **do Arena cấp theo sandbox ID mới** và thử từ ngoài sandbox trước khi đề nghị kiểm tra WebGL 2 trên iPhone. Không tự triển khai hosting công khai hay tuyên bố biết trước thời hạn sống của preview.
+
+## Giới hạn, rủi ro và bước tiếp theo
+
+- Build có **cảnh báo kích thước chunk** Three.js vượt ngưỡng 500 kB minified (526 kB; 132 kB gzip). UI được tách tải động khỏi chunk này; cần theo dõi thời gian tải và hiệu năng trên iPhone thật trước khi tối ưu thêm ở M2. Đây không phải lỗi build.
+- Browser headless dùng GPU phần mềm/SwiftShader; kết quả WebGL 2 không chứng minh hiệu năng, GPU hoặc tương thích Safari/iOS thật. WebGPU chỉ kiểm tra sự có mặt của `navigator.gpu`, không gọi adapter và không render.
+- Thông báo không hỗ trợ WebGL 2 được kiểm thử bằng mock `HTMLCanvasElement.getContext()`; chưa dùng một thiết bị thiếu WebGL 2 thật.
+- GitHub check-run của [job `136788903622`](https://github.com/Duy1811/THE-FALLEN/actions/runs/44885207389/job/136788903622) trên `2012aa6f30cd913ca43463343698d6496d72d8b7` kết luận `SUCCESS`; annotation Playwright ghi **“10 passed (9.0s)”**. Theo kết quả CI được cung cấp: **10 passed, 0 skipped, 0 failed** trên hai project Chromium mobile/WebKit giả lập iPhone. Sandbox vẫn không tải được ZIP log chi tiết (`EOF`); annotation tự nó không ghi tường minh số skipped, nên không suy ra số pass riêng cho từng project hoặc kết quả trên Safari iPhone thật. **Preview proxy hiện bị chặn** trước khi tới ứng dụng: cần khôi phục preview truy cập được từ Internet rồi mới nghiệm thu Safari/WebGL 2 trên iPhone thật; xem [NEXT_TASK.md](NEXT_TASK.md).
 
 ## Quy tắc báo cáo
 
-- Chỉ ghi kết quả đã chạy thực tế kèm bằng chứng (log, ảnh chụp, video, link CI).
-- Mỗi lần kiểm thử phải ghi: ngày, hạng mục, môi trường, kết quả, bằng chứng.
-- Không đánh dấu Verified cho tính năng nào nếu chưa có bằng chứng trong bảng này.
+- Chỉ ghi Verified cho phép kiểm tra **đã chạy thực tế** với lệnh, môi trường, kết quả và bằng chứng. CI được xác minh qua trạng thái job/bước GitHub; không coi workflow mới viết là Verified.
+- Không suy luận từ mô phỏng viewport/WebKit Linux sang hỗ trợ trên iPhone 15 Pro Max thật.

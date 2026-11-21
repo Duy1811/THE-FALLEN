@@ -1,16 +1,16 @@
 # TECHNICAL_ARCHITECTURE — Kiến trúc kỹ thuật THE FALLEN
 
-> Trạng thái: **Implemented** ở mức thiết kế kiến trúc (Giai đoạn A). Chưa có mã nguồn nào được triển khai theo kiến trúc này. Stack đã chốt, không tự ý thay đổi (xem [DECISION_LOG.md](DECISION_LOG.md)).
+> Trạng thái: **Implemented** ở mức thiết kế kiến trúc (Giai đoạn A); lớp UI và 3D diagnostic của M1 đã có mã, còn `Game`, `Data`, `Save`, Rapier và backend thuộc milestone sau. Stack đã chốt, không tự ý thay đổi (xem [DECISION_LOG.md](DECISION_LOG.md)).
 
 ## 1. Kiến trúc frontend
 
 - **React + TypeScript + Vite** cho ứng dụng web.
-- Tách lớp rõ ràng (kế hoạch, chưa triển khai):
-  - `UI`: menu, HUD, hội thoại, cài đặt — React components.
-  - `Game`: vòng lặp game, trạng thái gameplay, hệ thống năng lực, THE PRICE, nhiệm vụ.
-  - `3D`: Three.js scene, nhân vật, thế giới, hiệu ứng.
-  - `Data`: dữ liệu tĩnh (năng lực, nhiệm vụ, nhân vật) dạng module TypeScript/JSON.
-  - `Save`: IndexedDB (mục 5).
+- Tách lớp rõ ràng (M1 chỉ triển khai phần nền tảng):
+  - `UI`: React components — M1: trang kiểm tra trong `src/app/`; menu/HUD/hội thoại/cài đặt game để sau.
+  - `Game`: vòng lặp game, trạng thái gameplay, hệ thống năng lực, THE PRICE, nhiệm vụ — chưa triển khai.
+  - `3D`: Three.js — M1: diagnostic hình học tối thiểu trong `src/graphics/`; nhân vật/thế giới/hiệu ứng để sau.
+  - `Data`: dữ liệu tĩnh (năng lực, nhiệm vụ, nhân vật) dạng module TypeScript/JSON — chưa triển khai.
+  - `Save`: IndexedDB (mục 5) — chưa triển khai.
 - Quản lý trạng thái game tách khỏi React render loop để tránh re-render không cần thiết; React chủ yếu cho UI/HUD.
 - Cấu trúc thư mục chi tiết chốt ở M1 khi scaffolding.
 
@@ -52,7 +52,7 @@
 
 - **Vitest:** unit test cho logic game (năng lực, THE PRICE, nhiệm vụ, save).
 - **Playwright:** kiểm thử end-to-end trên trình duyệt (mobile viewport ưu tiên).
-- Chưa có test nào được chạy vì chưa có mã nguồn — xem [TEST_REPORT.md](TEST_REPORT.md).
+- M1 đã chạy unit test WebGL 2/WebGPU và Playwright Chromium mobile trong sandbox; [CI PR #2 trên commit `2012aa6` (run `44885207389`, job `136788903622`)](https://github.com/Duy1811/THE-FALLEN/actions/runs/44885207389/job/136788903622) chạy thành công Playwright **10 passed, 0 skipped, 0 failed** trên Chromium mobile/WebKit Linux. Safari trên iPhone thật vẫn chưa xác minh — xem [TEST_REPORT.md](TEST_REPORT.md).
 - Quy ước: tính năng nào cũng phải có test tương ứng trong [IMPLEMENTATION_MATRIX.md](IMPLEMENTATION_MATRIX.md) trước khi đánh dấu hoàn thành.
 
 ## 8. Performance

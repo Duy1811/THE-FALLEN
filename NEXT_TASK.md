@@ -1,40 +1,33 @@
 # NEXT_TASK — Công việc tiếp theo
 
-> Trạng thái: **Not Started**. Tài liệu này mô tả công việc tiếp theo duy nhất được phép bắt đầu. Không làm lại công việc đã hoàn thành (xem [PROJECT_STATE.md](PROJECT_STATE.md) và [HANDOFF_REPORT.md](HANDOFF_REPORT.md)).
+> Trạng thái: **Partial** (M1 Project Foundation, 2026-11-21). Giai đoạn A đã merge vào `main` qua PR #1. Ứng dụng khung đã triển khai và [CI PR #2](https://github.com/Duy1811/THE-FALLEN/pull/2) thành công, nhưng **M1 chưa hoàn thành** vì chưa kiểm thử Safari/WebGL 2 trên iPhone 15 Pro Max thật. Chi tiết: [PROJECT_STATE.md](PROJECT_STATE.md), [TEST_REPORT.md](TEST_REPORT.md).
 
-## Công việc tiếp theo
+## Công việc đang tiếp tục
 
-**M1 — Project Foundation: scaffolding ứng dụng web khung (React + TypeScript + Vite + Three.js).**
+**Hoàn tất nghiệm thu M1 — Project Foundation** theo [ROADMAP.md](ROADMAP.md#m1-project-foundation) và D-002/D-003/D-004.
 
-Nội dung cụ thể:
+Đã có mã React + TypeScript + Vite + Three.js, trang chẩn đoán WebGL 2 (WebGPU chỉ tùy chọn), cấu trúc thư mục, Vitest, Playwright và workflow CI. **Không viết gameplay, không bắt đầu M2** khi M1 chưa đủ bằng chứng.
 
-1. Khởi tạo ứng dụng React + TypeScript + Vite theo stack đã chốt (D-002).
-2. Thêm Three.js và trang kiểm tra WebGL 2 (WebGPU chỉ hiển thị trạng thái tùy chọn, không phụ thuộc).
-3. Thiết lập cấu trúc thư mục theo [TECHNICAL_ARCHITECTURE.md](TECHNICAL_ARCHITECTURE.md#1-kiến-trúc-frontend).
-4. Thiết lập Vitest và Playwright tối thiểu, CI chạy test.
-5. Xác nhận ứng dụng chạy trên trình duyệt iPhone 15 Pro Max (mobile-first).
+## Điều kiện và phần còn chờ
 
-> Không viết tính năng game trong task này. Không bắt đầu M2.
+- [x] Giai đoạn A đã merge vào `main` qua PR #1 (`d729933`).
+- [x] Stack và quyết định trong DECISION_LOG đã chốt; không đổi.
+- [ ] iPhone 15 Pro Max thật sẵn sàng cho người dùng mở preview trên Safari và lưu bằng chứng. Sandbox Arena không có thiết bị iOS thật, **Blocked** đối với bước này.
 
-## Điều kiện bắt đầu
+## Việc cần làm tiếp
 
-- Giai đoạn A (bộ tài liệu này) đã được merge vào `main` qua Pull Request.
-- Stack và quyết định đã chốt, không có thay đổi đang chờ phê duyệt trong [DECISION_LOG.md](DECISION_LOG.md).
-- Thiết bị iPhone 15 Pro Max sẵn sàng để kiểm thử mobile.
+1. PR [#2](https://github.com/Duy1811/THE-FALLEN/pull/2) vào `main` đã mở; CI typecheck/build/Vitest/Playwright Chromium + WebKit [thành công trên commit `2012aa6` (run `44885207389`, job `136788903622`, 10 Playwright passed / 0 skipped / 0 failed)](https://github.com/Duy1811/THE-FALLEN/actions/runs/44885207389/job/136788903622). Giữ PR mở, không tự merge. Sau các commit tài liệu, xác minh checks mới nhất vẫn xanh.
+2. **Việc còn thiếu:** người dùng mở URL preview Arena tạm thời (hoặc `npm run dev` qua mạng LAN) trên **Safari của iPhone 15 Pro Max thật**. Xác nhận trang hiển thị responsive, vật thể diagnostic xuất hiện, WebGL 2 báo “SẴN SÀNG”. Ghi iOS/Safari version, thời điểm, ảnh chụp hoặc video, tình trạng truy cập URL vào TEST_REPORT. Playwright giả lập **không thay thế** bước này.
+3. Sau khi thiết bị thật có bằng chứng và mọi điều kiện dưới đây đạt, mới cập nhật trạng thái M1 và xem xét M2. Không gắn tag milestone trước nghiệm thu.
 
-## Kết quả mong đợi
+## Tiêu chí hoàn thành (giữ nguyên chuẩn M1)
 
-- Ứng dụng web khung chạy được bằng `npm run dev`, mở được trên trình duyệt mobile.
-- Trang kiểm tra WebGL 2 hiển thị kết quả trên thiết bị thật.
-- Build thành công, test tối thiểu chạy trong CI.
-- Không có tính năng game nào (không nhân vật, không scene game, không năng lực).
+- [ ] `npm run dev` chạy được **và mở được trên iPhone 15 Pro Max** (dev server cục bộ và preview Host đã trả HTTP 200, nhưng chưa mở trên iPhone).
+- [x] Build thành công không lỗi (có cảnh báo kích thước chunk Three.js; xem [log](evidence/M1_LOCAL_VERIFICATION.md)).
+- [ ] WebGL 2 được xác nhận trên **thiết bị thật**; thiết bị không hỗ trợ hiển thị thông báo rõ ràng (fallback đã Implemented và Verified bằng test giả lập, chưa thử trên thiết bị thật).
+- [x] Vitest và Playwright chạy tối thiểu trong **CI** (job [build-and-test trên `2012aa6` thành công](https://github.com/Duy1811/THE-FALLEN/actions/runs/44885207389/job/136788903622), 10 Playwright passed / 0 skipped / 0 failed trên Chromium mobile và WebKit Linux; cục bộ 4 Vitest + 5 Chromium Playwright đã chạy).
+- [x] Kết quả cục bộ và CI đã ghi vào [TEST_REPORT.md](TEST_REPORT.md) kèm bằng chứng; **cần bổ sung kết quả iPhone thật** trước nghiệm thu đầy đủ.
+- [x] [PROJECT_STATE.md](PROJECT_STATE.md), [CHANGELOG.md](CHANGELOG.md) và [IMPLEMENTATION_MATRIX.md](IMPLEMENTATION_MATRIX.md) được cập nhật cho tiến độ M1.
+- [x] Thay đổi được commit trên branch làm việc `arena/4627ffe0-the-fallen`, push và mở [Pull Request #2](https://github.com/Duy1811/THE-FALLEN/pull/2) vào `main` (chưa merge).
 
-## Tiêu chí hoàn thành
-
-- [ ] `npm run dev` chạy được, mở được trên iPhone 15 Pro Max.
-- [ ] Build thành công không lỗi.
-- [ ] WebGL 2 được xác nhận trên thiết bị thật; thiết bị không hỗ trợ hiển thị thông báo rõ ràng.
-- [ ] Vitest và Playwright chạy tối thiểu trong CI.
-- [ ] Kết quả kiểm thử ghi vào [TEST_REPORT.md](TEST_REPORT.md) kèm bằng chứng.
-- [ ] [PROJECT_STATE.md](PROJECT_STATE.md), [CHANGELOG.md](CHANGELOG.md) và [IMPLEMENTATION_MATRIX.md](IMPLEMENTATION_MATRIX.md) được cập nhật.
-- [ ] Thay đổi được commit trên branch làm việc, push và mở Pull Request vào `main` (không tự merge).
+> Không đánh dấu M1 hoàn thành khi điều kiện trên thiết bị thật chưa có bằng chứng. CI chỉ chứng minh workflow chạy, không chứng minh iPhone Safari.

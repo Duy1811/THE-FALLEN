@@ -27,9 +27,8 @@
 
 ## Trạng thái tại thời điểm bàn giao
 
-- Giai đoạn A: bộ tài liệu Implemented (đã viết và kiểm tra liên kết/nhất quán), chưa Verified.
-- M1: Partial (tài liệu xong, scaffolding Not Started).
-- M2–M8: Not Started.
-- Mã nguồn, tài nguyên, backend, test: Not Started.
-- PC kiểm thử: Blocked — chờ người dùng thông báo PC sẵn sàng.
-- Công việc tiếp theo: xem [NEXT_TASK.md](NEXT_TASK.md).
+- Giai đoạn A: bộ tài liệu Implemented (đã viết và kiểm tra liên kết/nhất quán); PR #1 đã merge vào `main` (`d729933`).
+- M1: Partial — ứng dụng khung/test/CI workflow Implemented; typecheck/build/Vitest/Chromium mobile Verified **trong sandbox**, log ở [evidence/M1_LOCAL_VERIFICATION.md](evidence/M1_LOCAL_VERIFICATION.md); CI PR #2 typecheck/build/Vitest/Playwright Chromium + WebKit [Verified trên commit `2012aa6` (run `44885207389`, job `136788903622` SUCCESS)](https://github.com/Duy1811/THE-FALLEN/actions/runs/44885207389/job/136788903622) — 10 Playwright passed / 0 skipped / 0 failed trên Chromium mobile và WebKit Linux; iPhone Safari/WebGL 2 thật Blocked đến khi người dùng kiểm thử.
+- M2–M8: Not Started. Mã game, tài nguyên game, backend: Not Started.
+- PC của người dùng: Blocked — chờ thông báo sẵn sàng; headless Chromium sandbox không phải PC thật.
+- Công việc tiếp theo: hoàn tất nghiệm thu M1 trong [NEXT_TASK.md](NEXT_TASK.md), không bắt đầu M2 trước bằng chứng.
