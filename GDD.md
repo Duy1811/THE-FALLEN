@@ -1,6 +1,6 @@
 # GDD — Game Design Document: THE FALLEN – Kỷ Nguyên Siêu Nhân
 
-> Trạng thái: **Implemented** ở mức thiết kế khung (Giai đoạn A). Mọi nội dung dưới đây là thiết kế, **chưa được triển khai trong mã nguồn**. Tên nhân vật, địa danh cụ thể và kịch bản chi tiết chưa chốt — ghi là "chưa thiết kế" thay vì tự bịa.
+> Trạng thái: **Implemented** ở mức thiết kế khung (Giai đoạn A). Mọi nội dung dưới đây là thiết kế, **chưa được triển khai trong mã nguồn**. Sáu khu vực chính đã được xác nhận theo D-012 và nhân vật Seraphine – The Healer đã được xác nhận theo D-014; các quyết định đã được phê duyệt phải được giữ nguyên. Các nhân vật khác, cốt truyện chi tiết từng khu vực, tuyến quan hệ và kết thúc chưa được phê duyệt vẫn ghi rõ là "chưa thiết kế" hoặc "chưa được phê duyệt" — không tự sáng tạo thêm nội dung ngoài phạm vi đã được xác nhận.
 
 ## 1. Tổng quan
 
