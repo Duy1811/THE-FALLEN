@@ -52,7 +52,7 @@
 
 - **Vitest:** unit test cho logic game (năng lực, THE PRICE, nhiệm vụ, save).
 - **Playwright:** kiểm thử end-to-end trên trình duyệt (mobile viewport ưu tiên).
-- M1 đã chạy unit test WebGL 2/WebGPU và Playwright Chromium mobile trong sandbox; [CI PR #2](https://github.com/Duy1811/THE-FALLEN/actions/runs/44884262901/job/136786012091) chạy thành công cả Playwright Chromium/WebKit. Safari trên iPhone thật vẫn chưa xác minh — xem [TEST_REPORT.md](TEST_REPORT.md).
+- M1 đã chạy unit test WebGL 2/WebGPU và Playwright Chromium mobile trong sandbox; [CI PR #2 trên commit `2012aa6` (run `44885207389`, job `136788903622`)](https://github.com/Duy1811/THE-FALLEN/actions/runs/44885207389/job/136788903622) chạy thành công Playwright **10 passed, 0 skipped, 0 failed** trên Chromium mobile/WebKit Linux. Safari trên iPhone thật vẫn chưa xác minh — xem [TEST_REPORT.md](TEST_REPORT.md).
 - Quy ước: tính năng nào cũng phải có test tương ứng trong [IMPLEMENTATION_MATRIX.md](IMPLEMENTATION_MATRIX.md) trước khi đánh dấu hoàn thành.
 
 ## 8. Performance

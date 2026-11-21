@@ -16,7 +16,7 @@
 
 ## Việc cần làm tiếp
 
-1. PR [#2](https://github.com/Duy1811/THE-FALLEN/pull/2) vào `main` đã mở; CI typecheck/build/Vitest/Playwright Chromium + WebKit [thành công](https://github.com/Duy1811/THE-FALLEN/actions/runs/44884262901/job/136786012091). Giữ PR mở, không tự merge. Sau các commit tài liệu, xác minh checks mới nhất vẫn xanh.
+1. PR [#2](https://github.com/Duy1811/THE-FALLEN/pull/2) vào `main` đã mở; CI typecheck/build/Vitest/Playwright Chromium + WebKit [thành công trên commit `2012aa6` (run `44885207389`, job `136788903622`, 10 Playwright passed / 0 skipped / 0 failed)](https://github.com/Duy1811/THE-FALLEN/actions/runs/44885207389/job/136788903622). Giữ PR mở, không tự merge. Sau các commit tài liệu, xác minh checks mới nhất vẫn xanh.
 2. **Việc còn thiếu:** người dùng mở URL preview Arena tạm thời (hoặc `npm run dev` qua mạng LAN) trên **Safari của iPhone 15 Pro Max thật**. Xác nhận trang hiển thị responsive, vật thể diagnostic xuất hiện, WebGL 2 báo “SẴN SÀNG”. Ghi iOS/Safari version, thời điểm, ảnh chụp hoặc video, tình trạng truy cập URL vào TEST_REPORT. Playwright giả lập **không thay thế** bước này.
 3. Sau khi thiết bị thật có bằng chứng và mọi điều kiện dưới đây đạt, mới cập nhật trạng thái M1 và xem xét M2. Không gắn tag milestone trước nghiệm thu.
 
@@ -25,7 +25,7 @@
 - [ ] `npm run dev` chạy được **và mở được trên iPhone 15 Pro Max** (dev server cục bộ và preview Host đã trả HTTP 200, nhưng chưa mở trên iPhone).
 - [x] Build thành công không lỗi (có cảnh báo kích thước chunk Three.js; xem [log](evidence/M1_LOCAL_VERIFICATION.md)).
 - [ ] WebGL 2 được xác nhận trên **thiết bị thật**; thiết bị không hỗ trợ hiển thị thông báo rõ ràng (fallback đã Implemented và Verified bằng test giả lập, chưa thử trên thiết bị thật).
-- [x] Vitest và Playwright chạy tối thiểu trong **CI** (job [build-and-test thành công](https://github.com/Duy1811/THE-FALLEN/actions/runs/44884262901/job/136786012091); cục bộ 4 Vitest + 5 Chromium Playwright đã chạy).
+- [x] Vitest và Playwright chạy tối thiểu trong **CI** (job [build-and-test trên `2012aa6` thành công](https://github.com/Duy1811/THE-FALLEN/actions/runs/44885207389/job/136788903622), 10 Playwright passed / 0 skipped / 0 failed trên Chromium mobile và WebKit Linux; cục bộ 4 Vitest + 5 Chromium Playwright đã chạy).
 - [x] Kết quả cục bộ và CI đã ghi vào [TEST_REPORT.md](TEST_REPORT.md) kèm bằng chứng; **cần bổ sung kết quả iPhone thật** trước nghiệm thu đầy đủ.
 - [x] [PROJECT_STATE.md](PROJECT_STATE.md), [CHANGELOG.md](CHANGELOG.md) và [IMPLEMENTATION_MATRIX.md](IMPLEMENTATION_MATRIX.md) được cập nhật cho tiến độ M1.
 - [x] Thay đổi được commit trên branch làm việc `arena/4627ffe0-the-fallen`, push và mở [Pull Request #2](https://github.com/Duy1811/THE-FALLEN/pull/2) vào `main` (chưa merge).

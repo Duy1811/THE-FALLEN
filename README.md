@@ -54,7 +54,7 @@ npm run test:e2e            # Chromium mobile viewport + WebKit giả lập iPho
 npm run preview             # xem bản build sau npm run build
 ```
 
-Mở `http://localhost:5173` trên máy chạy server; trên thiết bị khác, dùng địa chỉ LAN của máy hoặc **preview tạm thời** do môi trường phát triển cung cấp. Không có website public/hosting được triển khai. CI chạy các lệnh build, typecheck, Vitest và Playwright khi mở PR vào `main` ([workflow](.github/workflows/ci.yml)). Nếu không cài được browser Playwright do giới hạn mạng của môi trường, xem [TEST_REPORT.md](TEST_REPORT.md) thay vì coi đó là test thành công.
+Mở `http://localhost:5173` trên máy chạy server; trên thiết bị khác, dùng địa chỉ LAN của máy hoặc **preview tạm thời** do môi trường phát triển cung cấp. Không có website public/hosting được triển khai. CI chạy các lệnh build, typecheck, Vitest và Playwright khi mở PR vào `main` ([workflow](.github/workflows/ci.yml)). [Job `136788903622` trên commit `2012aa6`](https://github.com/Duy1811/THE-FALLEN/actions/runs/44885207389/job/136788903622) thành công: Playwright **10 passed, 0 skipped, 0 failed** trên Chromium mobile và WebKit giả lập iPhone chạy trên Linux; đây **không phải Safari trên iPhone thật**. Nếu không cài được browser Playwright do giới hạn mạng của môi trường, xem [TEST_REPORT.md](TEST_REPORT.md) thay vì coi đó là test thành công.
 
 ### Cấu trúc frontend M1
 
@@ -124,4 +124,4 @@ Chỉ dùng 5 trạng thái sau trong toàn bộ tài liệu:
 
 ## Chi phí cần lưu ý
 
-Dự án tuân thủ Zero Paid AI Pipeline, nhưng các chi phí hạ tầng sau đây **có thể phát sinh** và phải được ghi rõ khi triển khai: hosting, domain, database, storage. Không giả định dịch vụ miễn phí là miễn phí vĩnh viễn hoặc không giới hạn. Chi tiết: [TECHNICAL_ARCHITECTURE.md](TECHNICAL_ARCHITECTURE.md#chi-phí-hạ-tầng-có-thể-phát-sinh), [ASSET_MANIFEST.md](ASSET_MANIFEST.md#quy-tắc-nguồn-và-license).
+Dự án tuân thủ Zero Paid AI Pipeline, nhưng các chi phí hạ tầng sau đây **có thể phát sinh** và phải được ghi rõ khi triển khai: hosting, domain, database, storage. Không giả định dịch vụ miễn phí là miễn phí vĩnh viễn hoặc không giới hạn. Chi tiết: [TECHNICAL_ARCHITECTURE.md](TECHNICAL_ARCHITECTURE.md#11-chi-phí-hạ-tầng-có-thể-phát-sinh), [ASSET_MANIFEST.md](ASSET_MANIFEST.md#quy-tắc-nguồn-và-license).

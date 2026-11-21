@@ -9,8 +9,9 @@
 - Thêm React + TypeScript strict + Vite, trang THE FALLEN mobile-first, scene hình học Three.js tối thiểu chỉ để chẩn đoán WebGL 2, không có gameplay/nhân vật/thế giới game.
 - Kiểm tra WebGL 2 bắt buộc với thông báo khi thiếu context, lỗi renderer hoặc context bị mất; phát hiện API WebGPU **tùy chọn** (không dùng để kết xuất).
 - Thêm Vitest (4 unit tests), Playwright (5 bài E2E cho từng browser project), cấu hình GitHub Actions cho typecheck/build/unit/E2E trên PR vào `main`; Three.js tách chunk tải động khỏi UI.
-- Đã chạy `npm ci`, typecheck, build, Vitest, Playwright Chromium giả lập mobile 430/375/320 px và khởi tạo WebGL 2 thực trong sandbox; bằng chứng ở [evidence/M1_LOCAL_VERIFICATION.md](evidence/M1_LOCAL_VERIFICATION.md). [CI PR #2](https://github.com/Duy1811/THE-FALLEN/actions/runs/44884262901/job/136786012091) đã thành công (typecheck/build/Vitest/Playwright Chromium + WebKit); Safari trên iPhone 15 Pro Max thật vẫn chờ xác minh, **không coi M1 hoàn thành**.
+- Đã chạy `npm ci`, typecheck, build, Vitest, Playwright Chromium giả lập mobile 430/375/320 px và khởi tạo WebGL 2 thực trong sandbox; bằng chứng ở [evidence/M1_LOCAL_VERIFICATION.md](evidence/M1_LOCAL_VERIFICATION.md). [CI PR #2 trên commit `2012aa6` (run `44885207389`, job `136788903622`)](https://github.com/Duy1811/THE-FALLEN/actions/runs/44885207389/job/136788903622) đã thành công (typecheck/build/Vitest; Playwright **10 passed, 0 skipped, 0 failed** trên Chromium mobile + WebKit Linux); Safari trên iPhone 15 Pro Max thật vẫn chờ xác minh, **không coi M1 hoàn thành**.
 - Không thêm dịch vụ AI, API key, tài nguyên game từ bên ngoài, backend hoặc hosting công khai. Build thành công nhưng còn cảnh báo chunk Three.js 526 kB minified (132 kB gzip).
+- Rà soát tài liệu M1: sửa 3 anchor GitHub không khớp heading, cập nhật báo cáo theo CI đã xác minh trên `2012aa6`, thay mục BUG_TRACKER chưa có lỗi bằng 3 vấn đề có bằng chứng (preview/proxy 502, giới hạn test cục bộ, cảnh báo chunk). Không thay đổi mã ứng dụng hoặc tiêu chí nghiệm thu M1.
 
 ### Added (bổ sung trong PR #1 — 2026-11-21)
 
