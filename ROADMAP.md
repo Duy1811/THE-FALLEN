@@ -1,6 +1,6 @@
 # ROADMAP — Lộ trình 8 milestone THE FALLEN
 
-> Trạng thái: **Implemented** ở mức kế hoạch (Giai đoạn A). Tất cả milestone đều **chưa triển khai mã nguồn**. Trạng thái chi tiết: [PROJECT_STATE.md](PROJECT_STATE.md#trạng-thái-từng-milestone).
+> Trạng thái: **Implemented** ở mức kế hoạch (Giai đoạn A). M1 **Partial**: ứng dụng khung và kiểm thử sandbox đã có nhưng chưa xác minh iPhone thật/CI; M2–M8 **Not Started**. Trạng thái chi tiết: [PROJECT_STATE.md](PROJECT_STATE.md#trạng-thái-từng-milestone).
 
 ## M1: Project Foundation
 

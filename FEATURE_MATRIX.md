@@ -1,12 +1,12 @@
 # FEATURE_MATRIX — Ma trận tính năng THE FALLEN
 
-> Trạng thái: **Not Started** cho toàn bộ tính năng game. Chỉ hạng mục tài liệu Giai đoạn A là Implemented. Nền tảng hỗ trợ: PC Browser và Mobile Browser (mobile-first).
+> Trạng thái: **Partial** cho F-02/F-03 nền tảng M1 (có mã và kiểm thử sandbox, chưa nghiệm thu iPhone thật/CI); tính năng game M2–M8 vẫn **Not Started**. Tài liệu Giai đoạn A Implemented. Nền tảng mục tiêu: PC Browser và Mobile Browser (mobile-first).
 
 | # | Tính năng | Milestone | Trạng thái triển khai | Nền tảng hỗ trợ |
 |---|---|---|---|---|
 | F-01 | Bộ tài liệu nền tảng (Giai đoạn A) | M1 | Implemented | — (tài liệu) |
-| F-02 | Scaffolding React + TypeScript + Vite + Three.js | M1 | Not Started | PC Browser, Mobile Browser |
-| F-03 | Kiểm tra WebGL 2 khi khởi động | M1 | Not Started | PC Browser, Mobile Browser |
+| F-02 | Scaffolding React + TypeScript + Vite + Three.js | M1 | Partial — mã Implemented, test sandbox Verified; iPhone thật/CI chờ | PC Browser, Mobile Browser |
+| F-03 | Kiểm tra WebGL 2 khi khởi động | M1 | Partial — fallback và diagnostic Implemented, test sandbox Verified; iPhone thật chờ | PC Browser, Mobile Browser |
 | F-04 | Nhân vật góc nhìn thứ ba, di chuyển, camera | M2 | Not Started | PC Browser, Mobile Browser |
 | F-05 | Thành phố chính kết nối liền mạch | M2 | Not Started | PC Browser, Mobile Browser |
 | F-06 | Khu vực đặc biệt tải riêng (6 khu vực) | M2 | Not Started | PC Browser, Mobile Browser |

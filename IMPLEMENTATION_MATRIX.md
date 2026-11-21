@@ -5,8 +5,8 @@
 | # | Tính năng | Tài liệu | Mã nguồn | Test | Trạng thái | Bằng chứng |
 |---|---|---|---|---|---|---|
 | F-01 | Bộ tài liệu nền tảng (Giai đoạn A) | Implemented — 14 tệp Markdown + `.gitignore` | Không áp dụng (không có mã nguồn game) | Không áp dụng | Implemented | Tệp trong repo; kiểm tra liên kết/nhất quán đã thực hiện |
-| F-02 | Scaffolding React + TS + Vite + Three.js | Implemented — TECHNICAL_ARCHITECTURE | Not Started | Not Started | Not Started | — |
-| F-03 | Kiểm tra WebGL 2 | Implemented — TECHNICAL_ARCHITECTURE | Not Started | Not Started | Not Started | — |
+| F-02 | Scaffolding React + TS + Vite + Three.js | Implemented — TECHNICAL_ARCHITECTURE | Implemented — `src/app/`, `src/graphics/`, Vite/TS configs, workflow CI | Verified cục bộ — typecheck/build/4 Vitest/5 Chromium Playwright; CI chờ PR | Partial — chưa có iPhone thật/CI | 2026-11-21: [log M1](evidence/M1_LOCAL_VERIFICATION.md), [TEST_REPORT](TEST_REPORT.md) |
+| F-03 | Kiểm tra WebGL 2 | Implemented — TECHNICAL_ARCHITECTURE | Implemented — `getWebGL2Context`, Three.js renderer, fallback, WebGPU API tùy chọn | Verified cục bộ — unit, Chromium renderer `ready`, fallback giả lập; iPhone thật Blocked | Partial — chưa xác nhận thiết bị thật | 2026-11-21: [log M1](evidence/M1_LOCAL_VERIFICATION.md), [TEST_REPORT](TEST_REPORT.md) |
 | F-04 | Nhân vật góc nhìn thứ ba | Implemented — GDD, ROADMAP M2 | Not Started | Not Started | Not Started | — |
 | F-05 | Thành phố chính | Implemented — GDD, ROADMAP M2 | Not Started | Not Started | Not Started | — |
 | F-06 | Khu vực tải riêng | Implemented — GDD, ROADMAP M2 | Not Started | Not Started | Not Started | — |

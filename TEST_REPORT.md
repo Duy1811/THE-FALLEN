@@ -1,27 +1,41 @@
 # TEST_REPORT — Báo cáo kiểm thử THE FALLEN
 
-> Trạng thái: **Not Started** — chưa có kiểm thử nào được chạy vì chưa có mã nguồn. Không có kết quả kiểm thử nào được tuyên bố trong tài liệu này.
+> Cập nhật 2026-11-21. **M1 Partial**: các phép kiểm tra dưới đây chỉ **Verified trong sandbox**; CI chờ PR và **không có kết quả Safari/WebGL 2 trên iPhone 15 Pro Max thật**. Bằng chứng lệnh gốc: [M1_LOCAL_VERIFICATION.md](evidence/M1_LOCAL_VERIFICATION.md).
 
 ## Môi trường kiểm thử
 
-| Môi trường | Trạng thái |
+| Môi trường | Trạng thái / giới hạn |
 |---|---|
-| iPhone 15 Pro Max (mobile browser) | Thiết bị mục tiêu chính; chưa kiểm thử vì chưa có ứng dụng |
-| PC (browser) | Blocked — chờ người dùng thông báo PC sẵn sàng |
+| Arena sandbox | Debian 12 x86_64, Node v22.22.3, npm 10.9.8; Vite bind `0.0.0.0:5173`, preview Host trả HTTP 200. |
+| Chromium headless 153 trong sandbox | Browser tạm từ package npm `@sparticuz/chromium` **chỉ dùng để chạy test**, không được thêm vào dependency/lockfile dự án; Playwright dùng Chromium mobile viewport 430 × 932 CSS px (DPR 3), thử thêm 375 và 320 px. Không phải iPhone Safari. |
+| Playwright WebKit giả lập iPhone 15 Pro Max | **Blocked cục bộ**: không có browser đã cài, CDN Playwright ngoài mạng được phép. Project WebKit đã cấu hình và sẽ chạy trên GitHub Actions khi PR mở. WebKit Linux cũng không thay thế iPhone Safari thật. |
+| iPhone 15 Pro Max / Safari trên thiết bị thật | **Blocked**: sandbox không có quyền điều khiển iPhone; chưa mở preview, chưa biết phiên bản iOS/Safari, chưa xác nhận WebGL 2 trên thiết bị. Người dùng cần làm checklist trong [README.md](README.md#xác-minh-trên-thiết-bị-thật-để-nghiệm-thu-m1). |
+| PC thật của người dùng | **Blocked**: chưa được thông báo sẵn sàng. Smoke test desktop trong sandbox không phải kiểm thử PC thật. |
+| GitHub Actions CI | **Implemented** workflow ở `.github/workflows/ci.yml`; **chưa Verified** tới khi PR chạy và có link checks. |
 
-## Kết quả kiểm thử
+## Kết quả M1 — 2026-11-21
 
-| Ngày | Hạng mục | Môi trường | Kết quả | Bằng chứng |
-|---|---|---|---|---|
-| — | Chưa có kiểm thử nào được thực hiện | — | — | — |
+| Hạng mục | Môi trường / lệnh | Kết quả | Bằng chứng |
+|---|---|---|---|
+| Cài dependency sạch | Sandbox: `npm ci --no-audit --no-fund` | **Verified:** exit 0, 116 packages | [Log gốc](evidence/M1_LOCAL_VERIFICATION.md) |
+| TypeScript strict | Sandbox: `npm run typecheck` | **Verified:** exit 0, không lỗi TypeScript | [Log gốc](evidence/M1_LOCAL_VERIFICATION.md) |
+| Build Vite | Sandbox: `npm run build` | **Verified:** exit 0; UI 233.19 kB / 72.86 kB gzip, Three.js diagnostic chunk 526.02 kB / 131.78 kB gzip | [Log gốc](evidence/M1_LOCAL_VERIFICATION.md) |
+| Vitest | Sandbox: `npm run test:unit` | **Verified:** 4/4 pass (WebGL 2 chỉ request `webgl2`, null/throw fallback, WebGPU API tùy chọn) | [Log gốc](evidence/M1_LOCAL_VERIFICATION.md) |
+| Playwright Chromium mobile | Sandbox: executable Chromium tạm + `npm run test:e2e -- --project=chromium-mobile` | **Verified:** 5/5 pass; trang chính, fallback giả lập, WebGPU không bắt buộc, viewport 430/375/320 px, renderer WebGL 2 thật trên Chromium headless | [Log gốc](evidence/M1_LOCAL_VERIFICATION.md), [tests](tests/e2e/foundation.spec.ts) |
+| WebGL 2 trong browser sandbox | Playwright Chromium headless: canvas `getContext('webgl2')` + Three.js WebGLRenderer | **Verified trên Chromium sandbox:** status `ready`; test ngữ cảnh giả lập không hỗ trợ cho status `unsupported`. **Không** phải xác nhận iPhone Safari. | [Log gốc](evidence/M1_LOCAL_VERIFICATION.md) (bài 2 và 5) |
+| Trang chính / responsive | Chromium headless viewport 430/375/320 px + quan sát màn hình 430 px và desktop trong sandbox | **Verified trong sandbox:** không tràn ngang, điều hướng tới `#diagnostics`; không có runtime page error trong lượt quan sát. Không thử thiết bị thật. | [Log Playwright](evidence/M1_LOCAL_VERIFICATION.md) (bài 1 và 4) |
+| Dev preview Host | Sandbox: Vite `0.0.0.0:5173`, curl với Host của preview Arena | **Verified:** HTTP 200, không có cảnh báo chặn preview lúc khởi động. **Không** xác minh truy cập từ iPhone. | [Log gốc](evidence/M1_LOCAL_VERIFICATION.md) (dòng cuối) |
+| WebKit/CI | Workflow tạo, chưa mở PR tại thời điểm viết bảng này | **Implemented / chưa Verified** — cần link run sau PR | `.github/workflows/ci.yml` |
+| Safari/WebGL 2 trên iPhone 15 Pro Max thật | Cần người dùng mở preview và ghi bằng chứng | **Blocked:** chưa kiểm thử; điều kiện nghiệm thu M1 chưa đạt | [NEXT_TASK.md](NEXT_TASK.md) |
 
-## Những gì chưa kiểm thử
+## Giới hạn, rủi ro và bước tiếp theo
 
-- Toàn bộ: ứng dụng web, WebGL 2, gameplay, năng lực, THE PRICE, NPC, nhiệm vụ, backend, cloud save, hiệu năng.
-- Kiểm thử trên PC: chưa thực hiện (PC chưa sẵn sàng).
+- Build có **cảnh báo kích thước chunk** Three.js vượt ngưỡng 500 kB minified (526 kB; 132 kB gzip). UI được tách tải động khỏi chunk này; cần theo dõi thời gian tải và hiệu năng trên iPhone thật trước khi tối ưu thêm ở M2. Đây không phải lỗi build.
+- Browser headless dùng GPU phần mềm/SwiftShader; kết quả WebGL 2 không chứng minh hiệu năng, GPU hoặc tương thích Safari/iOS thật. WebGPU chỉ kiểm tra sự có mặt của `navigator.gpu`, không gọi adapter và không render.
+- Thông báo không hỗ trợ WebGL 2 được kiểm thử bằng mock `HTMLCanvasElement.getContext()`; chưa dùng một thiết bị thiếu WebGL 2 thật.
+- Cần kết quả CI Vitest/Playwright cả Chromium và WebKit và kiểm thử iPhone Safari thật trước khi đánh dấu M1 hoàn thành; xem [NEXT_TASK.md](NEXT_TASK.md).
 
 ## Quy tắc báo cáo
 
-- Chỉ ghi kết quả đã chạy thực tế kèm bằng chứng (log, ảnh chụp, video, link CI).
-- Mỗi lần kiểm thử phải ghi: ngày, hạng mục, môi trường, kết quả, bằng chứng.
-- Không đánh dấu Verified cho tính năng nào nếu chưa có bằng chứng trong bảng này.
+- Chỉ ghi Verified cho phép kiểm tra **đã chạy thực tế** với lệnh, môi trường, kết quả và bằng chứng. Workflow viết xong nhưng chưa chạy chỉ được ghi Implemented.
+- Không suy luận từ mô phỏng viewport/WebKit Linux sang hỗ trợ trên iPhone 15 Pro Max thật.

@@ -1,7 +1,7 @@
 # THE FALLEN – Kỷ Nguyên Siêu Nhân
 
-> **Trạng thái hiện tại:** Giai đoạn A — Thiết lập nền tảng tài liệu. **Chưa có mã nguồn game.**
-> Tài liệu là cơ sở duy nhất của dự án ở giai đoạn này; mọi trạng thái trong tài liệu tuân thủ quy tắc ở mục [Quy tắc trạng thái](#quy-tắc-trạng-thái).
+> **Trạng thái hiện tại:** M1 Project Foundation — **Partial**. Đã có ứng dụng khung, WebGL 2 diagnostic, test và workflow CI; kiểm thử Safari/WebGL 2 trên iPhone 15 Pro Max thật vẫn chưa thực hiện. **Chưa có gameplay.**
+> Tài liệu thiết kế và [DECISION_LOG.md](DECISION_LOG.md) vẫn là cơ sở quyết định; xem [PROJECT_STATE.md](PROJECT_STATE.md) và [TEST_REPORT.md](TEST_REPORT.md) để phân biệt Implemented / Verified / Blocked.
 
 ## Giới thiệu
 
@@ -39,11 +39,48 @@ Bối cảnh: năm 2042. Công nghệ NEXUS tạo ra những con người Enhanc
 
 > Stack này đã chốt, không tự ý thay đổi. Chi tiết: [TECHNICAL_ARCHITECTURE.md](TECHNICAL_ARCHITECTURE.md), quyết định: [DECISION_LOG.md](DECISION_LOG.md).
 
+## Chạy ứng dụng M1
+
+Yêu cầu Node.js **22.12+** và npm. M1 chỉ là trang kiểm tra kỹ thuật; chưa có nhân vật, gameplay, physics, save hay backend.
+
+```bash
+npm ci
+npm run dev                 # Vite bind 0.0.0.0; mặc định cổng 5173
+npm run typecheck
+npm run build
+npm run test:unit
+npx playwright install --with-deps chromium webkit  # tải browser cho Playwright
+npm run test:e2e            # Chromium mobile viewport + WebKit giả lập iPhone 15 Pro Max
+npm run preview             # xem bản build sau npm run build
+```
+
+Mở `http://localhost:5173` trên máy chạy server; trên thiết bị khác, dùng địa chỉ LAN của máy hoặc **preview tạm thời** do môi trường phát triển cung cấp. Không có website public/hosting được triển khai. CI chạy các lệnh build, typecheck, Vitest và Playwright khi mở PR vào `main` ([workflow](.github/workflows/ci.yml)). Nếu không cài được browser Playwright do giới hạn mạng của môi trường, xem [TEST_REPORT.md](TEST_REPORT.md) thay vì coi đó là test thành công.
+
+### Cấu trúc frontend M1
+
+| Đường dẫn | Vai trò |
+|---|---|
+| `src/app/` | UI React cho trang nền tảng và thông báo tình trạng thiết bị |
+| `src/graphics/` | WebGL 2 detection và scene hình học Three.js **chỉ để chẩn đoán**, không phải thế giới game; WebGPU chỉ hiện trạng thái API |
+| `src/main.tsx`, `src/styles.css` | Entry point và CSS mobile-first, không tải asset ngoài |
+| `tests/e2e/` | Playwright: trang chính, fallback WebGL 2, WebGPU tùy chọn, viewport mobile, renderer khi có WebGL 2 |
+| `.github/workflows/ci.yml` | GitHub Actions cho `npm ci`, typecheck, build, unit và E2E |
+| `evidence/` | Log kiểm thử cục bộ nhỏ; ảnh chụp và output build không commit |
+
+Các lớp `Game`, `Data`, `Save` và physics Rapier là **kiến trúc dự kiến cho milestone sau** theo [TECHNICAL_ARCHITECTURE.md](TECHNICAL_ARCHITECTURE.md), không được khởi tạo chức năng game trong M1. Chỉ WebGL 2 được cấp cho `THREE.WebGLRenderer`; nếu không có WebGL 2 hoặc mất context, UI hiển thị lý do và cách thử lại. WebGPU **không** được dùng để render và dấu hiệu “phát hiện API” **không** đồng nghĩa adapter dùng được.
+
+### Xác minh trên thiết bị thật để nghiệm thu M1
+
+1. Mở preview tạm thời (hoặc dev server có thể truy cập) **trên Safari của iPhone 15 Pro Max thật**.
+2. Kiểm tra trang không tràn ngang, khung hình học Three.js xuất hiện và thẻ WebGL 2 báo **SẴN SÀNG**; ghi lại phiên bản iOS/Safari, thời điểm, ảnh chụp hoặc log.
+3. Kiểm tra WebGPU không ảnh hưởng kết quả WebGL 2; kiểm thử thông báo không hỗ trợ bằng tự động hóa, không cần làm hỏng thiết bị.
+4. Ghi bằng chứng vào [TEST_REPORT.md](TEST_REPORT.md) trước khi đánh dấu M1 hoàn thành. Mô phỏng Playwright không chứng minh iPhone thật đã chạy.
+
 ## Roadmap (tóm tắt)
 
 | Milestone | Nội dung | Trạng thái |
 |---|---|---|
-| M1 | Project Foundation | Partial — tài liệu đã xong, scaffolding chưa bắt đầu |
+| M1 | Project Foundation | Partial — ứng dụng khung và test cục bộ đã có; chờ xác minh CI và iPhone Safari thật |
 | M2 | Character & 3D World | Not Started |
 | M3 | Abilities & Combat | Not Started |
 | M4 | NPC & World Systems | Not Started |
